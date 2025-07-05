@@ -186,7 +186,7 @@ except ImportError as e:
     print("   python install_detectron2.py")
     print("   o manualmente:")
     print("   pip install detectron2 -f https://dl.fbaipublicfiles.com/detectron2/wheels/index.html")
-    print(f"📝 Error específico: {e}")
+    print(f"📝 Error específico: {{e}}")
     DETECTRON2_AVAILABLE = False
 
 def setup_config():
@@ -221,10 +221,10 @@ def register_datasets():
     # Usar rutas relativas desde el directorio de ejecución
     dataset_path = "../datasets/segmentation_coco"
     
-    print(f"📁 Dataset COCO: {dataset_path}")
+    print("📁 Dataset COCO: " + dataset_path)
     
     if not os.path.exists(dataset_path):
-        print(f"❌ Error: No se encontró el dataset: {dataset_path}")
+        print("❌ Error: No se encontró el dataset: " + dataset_path)
         print("💡 Ejecute desde training/ y asegúrese de que existe:")
         print("   ../datasets/segmentation_coco/")
         return
@@ -267,7 +267,7 @@ def main():
     
     # Verificar CUDA
     if torch.cuda.is_available():
-        print(f"🚀 Usando GPU: {torch.cuda.get_device_name()}")
+        print(f"🚀 Usando GPU: {{torch.cuda.get_device_name()}}")
     else:
         print("⚠️ Usando CPU - el entrenamiento será más lento")
     
@@ -283,7 +283,7 @@ def main():
     trainer.train()
     
     print("✅ Entrenamiento completado")
-    print(f"📁 Modelo guardado en: {cfg.OUTPUT_DIR}")
+    print(f"📁 Modelo guardado en: {{cfg.OUTPUT_DIR}}")
 
 if __name__ == "__main__":
     main()
