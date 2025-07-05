@@ -1,8 +1,0 @@
-tooth
-caries
-filling
-crown
-implant
-root_canal
-bone_loss
-impacted
