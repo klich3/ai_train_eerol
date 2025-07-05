@@ -30,6 +30,11 @@ torchvision>=0.15.0
 ultralytics>=8.0.0
 tensorflow>=2.10.0
 
+# ===== DETECTRON2 (para segmentación) =====
+# Nota: detectron2 requiere instalación especial desde Git
+# pip install 'git+https://github.com/facebookresearch/detectron2.git'
+# O usar: pip install detectron2 -f https://dl.fbaipublicfiles.com/detectron2/wheels/index.html
+
 # ===== DATA FORMATS & CONVERSION =====
 pycocotools>=2.0.6
 xmltodict>=0.12.0
