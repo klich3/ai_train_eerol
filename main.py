@@ -70,7 +70,10 @@ def show_main_menu():
     ║  9. Generar scripts de entrenamiento                         ║
     ║  10. Crear template de API                                   ║
     ║                                                              ║
-    ║  🚀 WORKFLOW COMPLETO                                        ║
+    ║  � PREVISUALIZACIÓN                                         ║
+    ║  15. Previsualizar anotaciones de datasets                   ║
+    ║                                                              ║
+    ║  �🚀 WORKFLOW COMPLETO                                        ║
     ║  11. Ejecutar workflow completo automático                   ║
     ║                                                              ║
     ║  ℹ️ INFORMACIÓN                                              ║
@@ -478,6 +481,30 @@ def main():
             
             elif choice == '14':
                 show_help()
+            
+            elif choice == '15':
+                print(f"\n🔍 HERRAMIENTA DE PREVISUALIZACIÓN DE DATASETS")
+                print(f"="*55)
+                print(f"Esta herramienta te permite visualizar anotaciones en tus datasets")
+                print(f"Soporta formatos: YOLO, COCO, CSV y JSON")
+                
+                launch_preview = input("\n¿Abrir herramienta de previsualización? (s/N): ").strip().lower()
+                
+                if launch_preview in ['s', 'si', 'sí', 'yes', 'y']:
+                    try:
+                        print(f"\n🚀 Iniciando herramienta de previsualización...")
+                        
+                        # Importar y ejecutar la herramienta interactiva
+                        import subprocess
+                        subprocess.run([sys.executable, 'preview_interactive.py'])
+                        
+                    except Exception as e:
+                        print(f"❌ Error al iniciar herramienta: {e}")
+                        print(f"💡 Puedes ejecutar manualmente: python preview_interactive.py")
+                else:
+                    print(f"💡 Para usar la herramienta manualmente:")
+                    print(f"   • Imagen individual: python dataset_preview_tool.py imagen.jpg anotaciones.txt")
+                    print(f"   • Modo interactivo: python preview_interactive.py")
             
             elif choice == '0':
                 print(f"\n👋 ¡Gracias por usar Dental AI Workflow Manager!")
