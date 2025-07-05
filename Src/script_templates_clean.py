@@ -17,46 +17,32 @@ class ScriptTemplateGenerator:
     
     def create_yolo_training_script(self, dataset_name: str, target_type: str):
         """Crea script de entrenamiento específico para YOLO."""
-        # Colocar el script en la carpeta del dataset para usar rutas relativas
-        dataset_dir = self.output_path / 'datasets' / 'detection_combined'
-        script_file = dataset_dir / f'train_{dataset_name}.sh'
-        
-        # También crear una copia en training/ para compatibilidad
         training_dir = self.output_path / 'training'
-        backup_script_file = training_dir / f'train_{dataset_name}.sh'
+        script_file = training_dir / f'train_{dataset_name}.sh'
         
         script_content = f"""#!/bin/bash
 # 🦷 Entrenamiento específico para {dataset_name}
-# Este script debe ejecutarse desde la carpeta del dataset
 
 echo "🦷 Iniciando entrenamiento para {dataset_name}..."
 
-# Obtener directorio actual (donde está el dataset y el data.yaml)
-DATASET_DIR="$(cd "$(dirname "${{BASH_SOURCE[0]}}")" && pwd)"
+# Obtener directorio del script y calcular rutas
+SCRIPT_DIR="$(cd "$(dirname "${{BASH_SOURCE[0]}}")" && pwd)"
+DENTAL_AI_DIR="$(dirname "$SCRIPT_DIR")"
+DATASET_DIR="$DENTAL_AI_DIR/datasets/detection_combined"
+
+echo "📁 Directorio del script: $SCRIPT_DIR"
+echo "📁 Directorio dental_ai: $DENTAL_AI_DIR"
 echo "📁 Directorio del dataset: $DATASET_DIR"
 
-# Verificar que estamos en la carpeta correcta
-if [[ ! -f "$DATASET_DIR/data.yaml" ]]; then
-    echo "❌ Error: No se encontró data.yaml en el directorio actual"
-    echo "💡 Este script debe ejecutarse desde la carpeta del dataset"
+# Verificar que existe el dataset
+if [[ ! -d "$DATASET_DIR" ]]; then
+    echo "❌ Error: No se encontró el directorio del dataset: $DATASET_DIR"
     echo "💡 Estructura esperada:"
-    echo "   detection_combined/"
-    echo "   ├── data.yaml"
-    echo "   ├── train/images/"
-    echo "   ├── val/images/"
-    echo "   └── test/images/"
+    echo "   dental_ai/"
+    echo "   ├── training/"
+    echo "   └── datasets/detection_combined/"
     exit 1
 fi
-
-# Verificar estructura del dataset
-for DIR in "train/images" "val/images" "test/images"; do
-    if [[ ! -d "$DATASET_DIR/$DIR" ]]; then
-        echo "❌ Error: No se encontró directorio $DIR"
-        exit 1
-    fi
-done
-
-echo "✅ Estructura del dataset verificada"
 
 # Configuración específica
 MODEL="yolov8n.pt"
@@ -64,41 +50,65 @@ EPOCHS=100
 BATCH=16
 IMG_SIZE=640
 
-# Verificar y corregir data.yaml para usar rutas relativas
-DATA_YAML="$DATASET_DIR/data.yaml"
-echo "🔧 Verificando configuración en: $DATA_YAML"
+# Crear data.yaml temporal con rutas absolutas dinámicas
+TEMP_DATA_YAML="$SCRIPT_DIR/temp_data.yaml"
+echo "🔧 Creando data.yaml temporal con rutas absolutas: $TEMP_DATA_YAML"
 
-# Crear una copia temporal del data.yaml con rutas relativas correctas
-TEMP_DATA_YAML="$DATASET_DIR/data_temp.yaml"
+# Detectar el sistema y construir ruta absoluta
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    # macOS
+    ABS_DATASET_PATH="$(cd "$DATASET_DIR" && pwd)"
+elif [[ -n "$HOME" ]]; then
+    # Linux/Unix - usar variable de entorno
+    if [[ "$DATASET_DIR" == /* ]]; then
+        # Ya es ruta absoluta
+        ABS_DATASET_PATH="$DATASET_DIR"
+    else
+        # Construir ruta absoluta usando HOME
+        ABS_DATASET_PATH="$HOME/ai/XRAY/Dist/dental_ai/datasets/detection_combined"
+        # Verificar si existe, sino usar ruta actual
+        if [[ ! -d "$ABS_DATASET_PATH" ]]; then
+            ABS_DATASET_PATH="$(cd "$DATASET_DIR" && pwd)"
+        fi
+    fi
+else
+    # Fallback - usar ruta absoluta actual
+    ABS_DATASET_PATH="$(cd "$DATASET_DIR" && pwd)"
+fi
 
-# Leer el data.yaml original y corregir las rutas
-python3 << 'EOF'
-import yaml
-import os
+echo "📁 Ruta absoluta del dataset: $ABS_DATASET_PATH"
 
-# Leer el data.yaml original
-with open('data.yaml', 'r') as f:
-    data = yaml.safe_load(f)
+cat > "$TEMP_DATA_YAML" << EOF
+# Configuración temporal para entrenamiento YOLO con rutas absolutas
+path: $ABS_DATASET_PATH
+train: train/images
+val: val/images
+test: test/images
 
-# Corregir las rutas para que sean relativas al directorio actual
-data['path'] = '.'  # Directorio actual
-data['train'] = 'train/images'
-data['val'] = 'val/images' 
-data['test'] = 'test/images'
-
-# Guardar el data.yaml temporal
-with open('data_temp.yaml', 'w') as f:
-    yaml.dump(data, f, default_flow_style=False)
-
-print("✅ data.yaml temporal creado con rutas relativas")
+# Clases (copiadas del data.yaml original)
 EOF
+
+# Copiar información de clases del data.yaml original
+if [[ -f "$DATASET_DIR/data.yaml" ]]; then
+    grep -E "^(nc|names):" "$DATASET_DIR/data.yaml" >> "$TEMP_DATA_YAML"
+else
+    # Valores por defecto
+    echo "nc: 6" >> "$TEMP_DATA_YAML"
+    echo "names:" >> "$TEMP_DATA_YAML"
+    echo "  0: tooth" >> "$TEMP_DATA_YAML"
+    echo "  1: caries" >> "$TEMP_DATA_YAML"
+    echo "  2: filling" >> "$TEMP_DATA_YAML"
+    echo "  3: crown" >> "$TEMP_DATA_YAML"
+    echo "  4: implant" >> "$TEMP_DATA_YAML"
+    echo "  5: other" >> "$TEMP_DATA_YAML"
+fi
 
 echo "📝 Contenido del data.yaml temporal:"
 cat "$TEMP_DATA_YAML"
 
-# Crear directorio de salida para logs
+# Crear directorio de salida
 TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
-OUTPUT_DIR="$DATASET_DIR/logs/training_${{TIMESTAMP}}"
+OUTPUT_DIR="$SCRIPT_DIR/logs/{dataset_name}_${{TIMESTAMP}}"
 mkdir -p "$OUTPUT_DIR"
 
 echo "📁 Guardando resultados en: $OUTPUT_DIR"
@@ -124,7 +134,7 @@ echo "📁 Modelo guardado en: $OUTPUT_DIR/{dataset_name}/weights/"
 echo "📊 Métricas en: $OUTPUT_DIR/{dataset_name}/"
 
 # Copiar mejor modelo a directorio de modelos
-MODEL_DIR="$DATASET_DIR/../../models/yolo_detect"
+MODEL_DIR="$DENTAL_AI_DIR/models/yolo_detect"
 mkdir -p "$MODEL_DIR"
 if [[ -f "$OUTPUT_DIR/{dataset_name}/weights/best.pt" ]]; then
     cp "$OUTPUT_DIR/{dataset_name}/weights/best.pt" "$MODEL_DIR/{dataset_name}_best.pt"
@@ -138,26 +148,15 @@ rm -f "$TEMP_DATA_YAML"
 echo "🧹 Archivo temporal eliminado"
 
 echo "🎉 Proceso completado!"
-echo "💡 Para ejecutar nuevamente:"
-echo "   cd $DATASET_DIR"
-echo "   ./train_{dataset_name}.sh"
 """
         
-        # Crear el script en la carpeta del dataset (principal)
         with open(script_file, 'w') as f:
             f.write(script_content)
         
         # Hacer ejecutable
         script_file.chmod(stat.S_IRWXU | stat.S_IRGRP | stat.S_IROTH)
         
-        # Crear también una copia en training/ para compatibilidad
-        with open(backup_script_file, 'w') as f:
-            f.write(script_content)
-        backup_script_file.chmod(stat.S_IRWXU | stat.S_IRGRP | stat.S_IROTH)
-        
-        print(f"📝 Script de entrenamiento YOLO creado en: {script_file}")
-        print(f"📝 Copia de respaldo creada en: {backup_script_file}")
-        print(f"💡 Para ejecutar: cd {dataset_dir} && ./train_{dataset_name}.sh")
+        print(f"📝 Script de entrenamiento YOLO creado: {script_file}")
     
     def create_segmentation_training_script(self, dataset_name: str, target_type: str):
         """Crea script de entrenamiento para segmentación."""
