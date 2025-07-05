@@ -89,7 +89,7 @@ class DatasetVisualizer:
         if format_dist:
             formats = list(format_dist.keys())
             counts = list(format_dist.values())
-            colors = [self.colors.get(fmt, '#gray') for fmt in formats]
+            colors = [self.colors.get(fmt, '#808080') for fmt in formats]
             
             wedges, texts, autotexts = plt.pie(counts, labels=formats, autopct='%1.1f%%', 
                                              startangle=90, colors=colors)

@@ -165,8 +165,7 @@ class DentalDataWorkflowManager:
         """🌐 Crea template de API para inferencia."""
         self.log_message("🌐 Creando template de API...")
         
-        api_path = self.output_path / "api"
-        self.script_generator.create_api_template(api_path)
+        self.script_generator.create_api_template()
         
         self.log_message("✅ Template de API creado")
     

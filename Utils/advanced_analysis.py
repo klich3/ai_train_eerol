@@ -545,7 +545,7 @@ class AdvancedDatasetAnalyzer:
         
         # Subplot 4: Scatter plot calidad vs imágenes
         plt.subplot(2, 3, 4)
-        colors = [self.colors.get(fmt, '#gray') for fmt in df['format']]
+        colors = [self.colors.get(fmt, '#808080') for fmt in df['format']]
         plt.scatter(df['images'], df['quality'], c=colors, alpha=0.6, s=60)
         plt.xlabel('Número de Imágenes')
         plt.ylabel('Puntuación de Calidad')
