@@ -83,7 +83,7 @@ echo "📦 Modelo copiado a: ../models/yolo_detect/{dataset_name}_best.pt"
         training_dir = self.output_path / 'training'
         script_file = training_dir / f'train_seg_{dataset_name}.py'
         
-        script_content = f'''#!/usr/bin/env python3
+        script_content = '''#!/usr/bin/env python3
 # 🦷 Entrenamiento de segmentación para {dataset_name}
 
 import os
@@ -128,13 +128,13 @@ def register_datasets():
     
     # Registrar splits
     for split in ["train", "val", "test"]:
-        dataset_name_split = f"{dataset_name}_{split}"
+        dataset_name_split = "{dataset_name}_" + split
         if dataset_name_split not in DatasetCatalog.list():
             register_coco_instances(
                 dataset_name_split,
                 {{}},
-                f"{dataset_path}/{split}/annotations.json",
-                f"{dataset_path}/{split}"
+                dataset_path + "/" + split + "/annotations.json",
+                dataset_path + "/" + split
             )
 
 def main():
@@ -157,7 +157,7 @@ def main():
 
 if __name__ == "__main__":
     main()
-'''
+'''.format(dataset_name=dataset_name, target_type=target_type)
         
         with open(script_file, 'w') as f:
             f.write(script_content)

@@ -34,7 +34,6 @@ class StructureGenerator:
                 'logs': 'Logs de entrenamiento'
             },
             'api': {
-                'main.py': 'API principal',
                 'models': 'Modelos para la API',
                 'utils': 'Utilidades'
             },
@@ -50,12 +49,28 @@ class StructureGenerator:
         # Crear directorios principales
         for main_dir, content in self.dental_ai_structure.items():
             main_path = self.output_path / main_dir
+            
+            # Verificar si existe como archivo y eliminarlo si es necesario
+            if main_path.exists() and main_path.is_file():
+                print(f"⚠️ Eliminando archivo conflictivo: {main_path}")
+                main_path.unlink()
+            
             main_path.mkdir(parents=True, exist_ok=True)
             structure_created.append(str(main_path))
             
             if isinstance(content, dict):
                 for sub_dir, description in content.items():
+                    # Filtrar archivos (que contengan extensión)
+                    if '.' in sub_dir:
+                        continue  # Saltar archivos, solo crear directorios
+                    
                     sub_path = main_path / sub_dir
+                    
+                    # Verificar si existe como archivo y eliminarlo si es necesario
+                    if sub_path.exists() and sub_path.is_file():
+                        print(f"⚠️ Eliminando archivo conflictivo: {sub_path}")
+                        sub_path.unlink()
+                    
                     sub_path.mkdir(parents=True, exist_ok=True)
                     structure_created.append(str(sub_path))
                     
@@ -70,6 +85,12 @@ class StructureGenerator:
                 # Crear subdirectorios específicos de training
                 for sub_dir in ['scripts', 'configs', 'logs']:
                     sub_path = main_path / sub_dir
+                    
+                    # Verificar si existe como archivo y eliminarlo si es necesario
+                    if sub_path.exists() and sub_path.is_file():
+                        print(f"⚠️ Eliminando archivo conflictivo: {sub_path}")
+                        sub_path.unlink()
+                    
                     sub_path.mkdir(parents=True, exist_ok=True)
                     structure_created.append(str(sub_path))
         
@@ -78,7 +99,7 @@ class StructureGenerator:
         self.create_requirements_file()
         self.create_main_config()
         
-        print(f"✅ Estructura dental-ai creada con {len(structure_created)} directorios")
+        print(f"✅ Estructura dental-ai creada: {len(structure_created)} directorios")
         return structure_created
     
     def create_main_documentation(self):

@@ -358,15 +358,19 @@ def main():
                 confirm = input("¿Proceder? (s/N): ").strip().lower()
                 
                 if confirm in ['s', 'si', 'sí', 'yes', 'y']:
-                    manager.create_dental_ai_structure()
-                    
-                    print(f"\n✅ Estructura dental-ai creada en: {manager.output_path}")
-                    print(f"📂 Directorios principales:")
-                    print(f"   • datasets/ (datasets procesados)")
-                    print(f"   • models/ (modelos entrenados)")
-                    print(f"   • training/ (scripts y configuraciones)")
-                    print(f"   • api/ (API de inferencia)")
-                    print(f"   • docs/ (documentación)")
+                    try:
+                        manager.create_dental_ai_structure()
+                        
+                        print(f"\n✅ Estructura dental-ai creada en: {manager.output_path}")
+                        print(f"📂 Directorios principales:")
+                        print(f"   • datasets/ (datasets procesados)")
+                        print(f"   • models/ (modelos entrenados)")
+                        print(f"   • training/ (scripts y configuraciones)")
+                        print(f"   • api/ (API de inferencia)")
+                        print(f"   • docs/ (documentación)")
+                    except Exception as e:
+                        print(f"❌ Error al crear estructura: {e}")
+                        print(f"💡 Verificando integridad del sistema...")
                 else:
                     print("❌ Operación cancelada")
             
@@ -375,13 +379,17 @@ def main():
                 confirm = input("¿Proceder? (s/N): ").strip().lower()
                 
                 if confirm in ['s', 'si', 'sí', 'yes', 'y']:
-                    manager.create_training_scripts()
-                    
-                    print(f"\n✅ Scripts de entrenamiento generados:")
-                    print(f"   📝 YOLO: {manager.output_path}/training/scripts/train_yolo.py")
-                    print(f"   📝 U-Net: {manager.output_path}/training/scripts/train_unet.py")
-                    print(f"   📝 Classification: {manager.output_path}/training/scripts/train_classification.py")
-                    print(f"   ⚙️ Configuraciones en: {manager.output_path}/training/configs/")
+                    try:
+                        manager.create_training_scripts()
+                        
+                        print(f"\n✅ Scripts de entrenamiento generados:")
+                        print(f"   📝 YOLO: {manager.output_path}/training/scripts/train_yolo.py")
+                        print(f"   📝 U-Net: {manager.output_path}/training/scripts/train_unet.py")
+                        print(f"   📝 Classification: {manager.output_path}/training/scripts/train_classification.py")
+                        print(f"   ⚙️ Configuraciones en: {manager.output_path}/training/configs/")
+                    except Exception as e:
+                        print(f"❌ Error al generar scripts: {e}")
+                        print(f"💡 Asegúrate de que la estructura dental-ai está creada (opción 8)")
                 else:
                     print("❌ Operación cancelada")
             

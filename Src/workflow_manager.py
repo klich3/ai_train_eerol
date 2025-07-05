@@ -12,7 +12,7 @@ from typing import Dict, List, Any
 from .data_analyzer import DataAnalyzer
 from .data_processor import DataProcessor
 from .structure_generator import StructureGenerator
-from .script_templates import ScriptGenerator
+from .script_templates import ScriptTemplateGenerator
 
 
 class DentalDataWorkflowManager:
@@ -105,8 +105,8 @@ class DentalDataWorkflowManager:
         # Inicializar módulos
         self.analyzer = DataAnalyzer(self.base_path, self.unified_classes)
         self.processor = DataProcessor(self.unified_classes, self.standard_resolutions, self.safety_config)
-        self.structure_generator = StructureGenerator(self.dental_ai_structure)
-        self.script_generator = ScriptGenerator()
+        self.structure_generator = StructureGenerator(self.output_path)
+        self.script_generator = ScriptTemplateGenerator(self.output_path)
         
         # Logging
         self.log_entries = []
@@ -141,8 +141,10 @@ class DentalDataWorkflowManager:
         """🏗️ Crea la estructura completa de dental-ai."""
         self.log_message(f"🏗️ Creando estructura dental-ai en: {self.output_path}")
         
-        self.structure_generator.create_structure(self.output_path)
-        self.structure_generator.create_documentation(self.output_path)
+        self.structure_generator.create_dental_ai_structure()
+        self.structure_generator.create_main_documentation()
+        self.structure_generator.create_requirements_file()
+        self.structure_generator.create_main_config()
         
         self.log_message("✅ Estructura dental-ai creada exitosamente")
     
@@ -153,9 +155,9 @@ class DentalDataWorkflowManager:
         training_path = self.output_path / "training"
         
         # Generar scripts para cada tipo de modelo
-        self.script_generator.create_yolo_training_script(training_path)
-        self.script_generator.create_unet_training_script(training_path)
-        self.script_generator.create_classification_script(training_path)
+        self.script_generator.create_yolo_training_script("dental_dataset", "detection")
+        self.script_generator.create_segmentation_training_script("dental_dataset", "segmentation")
+        self.script_generator.create_classification_training_script("dental_dataset", "classification")
         
         self.log_message("✅ Scripts de entrenamiento generados")
     

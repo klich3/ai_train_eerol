@@ -1629,11 +1629,17 @@ if __name__ == "__main__":
     
     def create_api_template(self):
         """Crea plantilla de API para inferencia."""
-        api_dir = self.output_path / 'api'
-        api_dir.mkdir(parents=True, exist_ok=True)
-        
-        # API principal
-        main_api_file = api_dir / 'main.py'
+        try:
+            # Verificar que output_path está definido
+            if not hasattr(self, 'output_path') or self.output_path is None:
+                print("⚠️  output_path no definido. Usando directorio por defecto.")
+                self.output_path = Path("dental-ai")
+            
+            api_dir = self.output_path / 'api'
+            api_dir.mkdir(parents=True, exist_ok=True)
+            
+            # API principal
+            main_api_file = api_dir / 'main.py'
         api_content = '''#!/usr/bin/env python3
 # 🦷 API de Inferencia Dental AI
 
@@ -1771,13 +1777,14 @@ if __name__ == "__main__":
     )
 '''
         
-        with open(main_api_file, 'w') as f:
-            f.write(api_content)
-        
-        # Archivo de requirements para la API
-        api_requirements = api_dir / 'requirements.txt'
-        with open(api_requirements, 'w') as f:
-            f.write('''fastapi>=0.100.0
+            try:
+                with open(main_api_file, 'w') as f:
+                    f.write(api_content)
+                
+                # Archivo de requirements para la API
+                api_requirements = api_dir / 'requirements.txt'
+                with open(api_requirements, 'w') as f:
+                    f.write('''fastapi>=0.100.0
 uvicorn[standard]>=0.22.0
 torch>=2.0.0
 torchvision>=0.15.0
@@ -1785,11 +1792,119 @@ opencv-python>=4.8.0
 Pillow>=9.5.0
 python-multipart>=0.0.6
 ''')
+                
+                print(f"✅ API template creada en: {api_dir}")
+                print(f"🚀 Para ejecutar: cd {api_dir.name}/api && python main.py")
+                
+            except PermissionError:
+                print(f"❌ Error de permisos al crear archivos en: {api_dir}")
+                print("   Verifica que tienes permisos de escritura en el directorio")
+            except Exception as e:
+                print(f"❌ Error creando API template: {e}")
+                
+        except Exception as e:
+            print(f"❌ Error en create_api_template: {e}")
+            print("   Continuando con el resto del proceso...")
+
+
+    def generate_training_recommendations(self, class_distribution: Dict[str, int], 
+                                         fusion_groups: Dict[str, List[str]]) -> Dict[str, Any]:
+        """Genera recomendaciones de entrenamiento basadas en el análisis de datos."""
         
-        print(f"📝 API template creada en: {api_dir}")
-        print(f"🚀 Para ejecutar: cd dental-ai/api && python main.py")
+        total_samples = sum(class_distribution.values())
+        avg_samples = total_samples / len(class_distribution) if class_distribution else 0
+        
+        recommendations = {
+            'dataset_preparation': [],
+            'training_strategy': [],
+            'augmentation_suggestions': [],
+            'model_architecture': [],
+            'hyperparameters': {}
+        }
+        
+        # Análisis de balance de clases
+        imbalanced_classes = []
+        for class_name, count in class_distribution.items():
+            if count < avg_samples * 0.5:  # Menos del 50% del promedio
+                imbalanced_classes.append(class_name)
+        
+        if imbalanced_classes:
+            recommendations['dataset_preparation'].extend([
+                f"Clases desbalanceadas detectadas: {', '.join(imbalanced_classes)}",
+                "Considerar técnicas de balanceo o augmentación específica",
+                "Usar weighted loss functions durante el entrenamiento"
+            ])
+            
+            recommendations['augmentation_suggestions'].extend([
+                "Aplicar augmentación agresiva a clases minoritarias",
+                "Técnicas recomendadas: rotación, cambio de brillo, noise",
+                "Considerar synthetic data generation"
+            ])
+        
+        # Recomendaciones basadas en tamaño del dataset
+        if total_samples < 1000:
+            recommendations['training_strategy'].extend([
+                "Dataset pequeño detectado",
+                "Usar transfer learning con modelos pre-entrenados",
+                "Aplicar data augmentation extensiva",
+                "Usar learning rate bajo para fine-tuning"
+            ])
+            recommendations['hyperparameters'].update({
+                'learning_rate': 0.001,
+                'batch_size': 8,
+                'epochs': 100
+            })
+        elif total_samples < 5000:
+            recommendations['training_strategy'].extend([
+                "Dataset mediano - buen balance entre training from scratch y transfer learning",
+                "Considerar mixup o cutmix para regularización"
+            ])
+            recommendations['hyperparameters'].update({
+                'learning_rate': 0.01,
+                'batch_size': 16,
+                'epochs': 80
+            })
+        else:
+            recommendations['training_strategy'].extend([
+                "Dataset grande - training from scratch viable",
+                "Considerar ensemble methods"
+            ])
+            recommendations['hyperparameters'].update({
+                'learning_rate': 0.01,
+                'batch_size': 32,
+                'epochs': 60
+            })
+        
+        # Recomendaciones de arquitectura basadas en el número de clases
+        num_classes = len(class_distribution)
+        if num_classes <= 5:
+            recommendations['model_architecture'].extend([
+                "Pocas clases - modelos simples pueden ser efectivos",
+                "Recomendados: ResNet50, EfficientNet-B0"
+            ])
+        elif num_classes <= 20:
+            recommendations['model_architecture'].extend([
+                "Número moderado de clases - modelos medianos recomendados",
+                "Recomendados: ResNet101, EfficientNet-B3"
+            ])
+        else:
+            recommendations['model_architecture'].extend([
+                "Muchas clases - modelos más complejos necesarios",
+                "Recomendados: ResNet152, EfficientNet-B5+"
+            ])
+        
+        # Recomendaciones basadas en fusión de datasets
+        if len(fusion_groups) > 1:
+            recommendations['dataset_preparation'].extend([
+                "Múltiples grupos de fusión disponibles",
+                "Considerar entrenar modelos especializados por grupo",
+                "Evaluar domain adaptation techniques"
+            ])
+        
+        return recommendations
 
-
+    # ...existing code...
+    
 def main():
     """Función principal para ejecutar el workflow manager."""
     print("🎛️ WORKFLOW MANAGER PARA DATASETS DENTALES (MODO SEGURO)")
@@ -1854,10 +1969,6 @@ def main():
                 datasets_to_merge = input("\nIngresa nombres de datasets YOLO separados por coma: ").split(',')
                 datasets_to_merge = [d.strip() for d in datasets_to_merge if d.strip()]
                 
-                if not datasets_to_merge:
-                    print("❌ No se especificaron datasets para fusionar")
-                    continue
-                
                 output_name = input("Nombre del dataset unificado (opcional): ").strip() or "dental_detection"
                 
                 print(f"\n🔍 Datasets a fusionar: {', '.join(datasets_to_merge)}")
@@ -1880,10 +1991,6 @@ def main():
                 datasets_to_merge = input("\nIngresa nombres de datasets COCO separados por coma: ").split(',')
                 datasets_to_merge = [d.strip() for d in datasets_to_merge if d.strip()]
                 
-                if not datasets_to_merge:
-                    print("❌ No se especificaron datasets para fusionar")
-                    continue
-                
                 output_name = input("Nombre del dataset unificado (opcional): ").strip() or "dental_segmentation"
                 
                 print(f"\n🔍 Datasets a fusionar: {', '.join(datasets_to_merge)}")
@@ -1905,10 +2012,6 @@ def main():
                 
                 datasets_to_merge = input("\nIngresa nombres de datasets de clasificación separados por coma: ").split(',')
                 datasets_to_merge = [d.strip() for d in datasets_to_merge if d.strip()]
-                
-                if not datasets_to_merge:
-                    print("❌ No se especificaron datasets para fusionar")
-                    continue
                 
                 output_name = input("Nombre del dataset unificado (opcional): ").strip() or "dental_classification"
                 
@@ -1993,15 +2096,19 @@ def main():
             confirm = input("¿Proceder? (s/N): ").strip().lower()
             
             if confirm in ['s', 'si', 'sí', 'yes', 'y']:
-                manager.create_api_template()
-                print(f"\n✅ Plantilla de API creada")
-                print(f"📝 Archivo principal: dental-ai/api/main.py")
-                print(f"📋 Requirements: dental-ai/api/requirements.txt")
-                print(f"\n🚀 Para usar la API:")
-                print(f"   cd dental-ai/api")
-                print(f"   pip install -r requirements.txt")
-                print(f"   python main.py")
-                print(f"   Navega a: http://localhost:8000/docs")
+                try:
+                    manager.create_api_template()
+                    print(f"\n✅ Plantilla de API creada")
+                    print(f"📝 Archivo principal: dental-ai/api/main.py")
+                    print(f"📋 Requirements: dental-ai/api/requirements.txt")
+                    print(f"\n🚀 Para usar la API:")
+                    print(f"   cd dental-ai/api")
+                    print(f"   pip install -r requirements.txt")
+                    print(f"   python main.py")
+                    print(f"   Navega a: http://localhost:8000/docs")
+                except Exception as e:
+                    print(f"❌ Error creando plantilla de API: {e}")
+                    print("   Verifica permisos y espacio en disco")
             else:
                 print("❌ Operación cancelada")
         

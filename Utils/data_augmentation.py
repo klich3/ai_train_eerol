@@ -41,7 +41,7 @@ class DentalDataAugmenter:
             # Ruido para simular diferentes equipos
             A.OneOf([
                 A.GaussNoise(var_limit=(10.0, 50.0), p=0.3),
-                A.ISONoise(color_shift=(0.01, 0.05), intensity=(0.1, 0.5), p=0.3),
+                A.ISONoise(color_shift_limit=(0.01, 0.05), intensity=(0.1, 0.5), p=0.3),
             ], p=0.2),
             
             # Distorsiones ópticas suaves

@@ -223,6 +223,69 @@ def ejemplo_uso_modulos():
     print(f"\n🎉 ¡Uso modular completado!")
 
 
+def ejemplo_smart_workflow():
+    """🧠 Ejemplo del nuevo sistema inteligente."""
+    print("\n\n🧠 EJEMPLO SMART WORKFLOW - SISTEMA INTELIGENTE")
+    print("="*55)
+    
+    from Src.smart_workflow_manager import SmartDentalWorkflowManager
+    
+    # Inicializar smart workflow
+    smart_manager = SmartDentalWorkflowManager(
+        base_path="_dataSets",
+        output_path="Dist/dental_ai_smart"
+    )
+    
+    print("🎯 Funcionalidades del sistema inteligente:")
+    print("   • Análisis automático de categorías")
+    print("   • Detección de formatos")
+    print("   • Mapeo inteligente de clases")
+    print("   • Selección interactiva")
+    print("   • Conversión múltiple")
+    print("   • Verificación de calidad")
+    
+    # Ejecutar análisis básico
+    print("\n1️⃣ Ejecutando análisis inteligente...")
+    smart_manager._scan_and_analyze()
+    
+    print("\n2️⃣ Mostrando categorías detectadas...")
+    smart_manager._show_categories_menu()
+    
+    print("\n3️⃣ Generando reporte detallado...")
+    smart_manager._show_analysis_report()
+    
+    print(f"\n🎉 ¡Ejemplo smart workflow completado!")
+    print(f"📂 Revisa los resultados en: {smart_manager.output_path}")
+
+
+def ejemplo_workflow_completo_automatico():
+    """🚀 Ejemplo de workflow completo automático."""
+    print("\n\n🚀 EJEMPLO WORKFLOW COMPLETO AUTOMÁTICO")
+    print("="*45)
+    
+    from Src.smart_workflow_manager import SmartDentalWorkflowManager
+    
+    # Inicializar y ejecutar workflow completo
+    smart_manager = SmartDentalWorkflowManager(
+        base_path="_dataSets",
+        output_path="Dist/dental_ai_auto"
+    )
+    
+    print("🤖 Ejecutando workflow automático completo...")
+    print("   Este proceso incluye:")
+    print("   • Escaneo y análisis")
+    print("   • Selección automática de datasets")
+    print("   • Conversión a múltiples formatos")
+    print("   • Balanceado de datos")
+    print("   • Verificación y validación")
+    print("   • Generación de scripts")
+    
+    smart_manager._run_complete_workflow()
+    
+    print(f"\n🎉 ¡Workflow automático completado!")
+    print(f"📂 Todo listo en: {smart_manager.output_path}")
+
+
 def main():
     """🚀 Función principal con menú de ejemplos."""
     print("🦷 EJEMPLOS DE USO - DENTAL AI WORKFLOW MANAGER v2.0")
@@ -234,9 +297,11 @@ def main():
     print("3. ⚙️ Configuración personalizada")
     print("4. 🧩 Uso modular de componentes")
     print("5. 🚀 Ejecutar todos los ejemplos")
+    print("6. 🧠 Ejemplo smart workflow")
+    print("7. 🚀 Ejemplo workflow completo automático")
     print("0. ❌ Salir")
     
-    choice = input("\n🎯 Selecciona una opción (1-5): ").strip()
+    choice = input("\n🎯 Selecciona una opción (1-7): ").strip()
     
     try:
         if choice == '1':
@@ -253,6 +318,10 @@ def main():
             ejemplo_procesamiento_avanzado()
             ejemplo_personalizado()
             ejemplo_uso_modulos()
+        elif choice == '6':
+            ejemplo_smart_workflow()
+        elif choice == '7':
+            ejemplo_workflow_completo_automatico()
         elif choice == '0':
             print("👋 ¡Hasta luego!")
             return

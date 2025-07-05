@@ -225,11 +225,23 @@ class DataAnalyzer:
                     with open(classes_file, 'r') as f:
                         classes.update(line.strip() for line in f if line.strip())
                 elif data_yaml.exists():
-                    import yaml
-                    with open(data_yaml, 'r') as f:
-                        data = yaml.safe_load(f)
-                        if 'names' in data:
-                            classes.update(data['names'])
+                    try:
+                        import yaml
+                        with open(data_yaml, 'r') as f:
+                            data = yaml.safe_load(f)
+                            if 'names' in data:
+                                names = data['names']
+                                if isinstance(names, dict):
+                                    # Si es un diccionario, tomar los valores
+                                    classes.update(str(v) for v in names.values() if v is not None)
+                                elif isinstance(names, list):
+                                    # Si es una lista, tomar los elementos
+                                    classes.update(str(name) for name in names if name is not None)
+                                else:
+                                    # Si es otro tipo, convertir a string
+                                    classes.add(str(names))
+                    except Exception as e:
+                        print(f"⚠️ Error leyendo YAML {data_yaml}: {e}")
                 else:
                     # Analizar archivos .txt de muestra
                     for ann_file in sample_annotations:
@@ -260,7 +272,15 @@ class DataAnalyzer:
         except Exception as e:
             print(f"⚠️ Error detectando clases en {dataset_path}: {e}")
         
-        return sorted(list(classes))
+        # Asegurar que todas las clases sean strings válidos
+        valid_classes = []
+        for cls in classes:
+            if cls is not None:
+                cls_str = str(cls).strip()
+                if cls_str:  # Solo agregar si no está vacío
+                    valid_classes.append(cls_str)
+        
+        return sorted(valid_classes)
     
     def generate_analysis_report(self, analysis: Dict, output_path: Path) -> Path:
         """📋 Genera un reporte completo del análisis."""
