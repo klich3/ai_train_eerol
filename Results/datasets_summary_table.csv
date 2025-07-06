@@ -1,0 +1,40 @@
+Dataset,Format,Images,Annotations,Classes,Quality_Score,Valid,Path
+Dental 3,YOLO,9521,9523,1,75.0,True,_dataSets/_YOLO/Dental 3
+Dental Diseases,YOLO,9206,9208,12,75.0,True,_dataSets/_YOLO/Dental Diseases
+Dental Disease Panoramic Detection Dataset,YOLO,8423,8423,14,75.0,True,_dataSets/_YOLO/Dental Disease Panoramic Detection Dataset
+dental_datasetv6,YOLO,8423,8425,14,75.0,True,_dataSets/_YOLO/dental_datasetv6
+dental,YOLO,1899,3804,0,75.0,True,_dataSets/_YOLO/dental
+dental_diseases_yolo,YOLO,705,705,4,75.0,True,_dataSets/_YOLO/dental_diseases_yolo
+dental_quadrants_yolo,YOLO,705,705,4,75.0,True,_dataSets/_YOLO/dental_quadrants_yolo
+dental_complete_yolo,YOLO,705,705,16,75.0,True,_dataSets/_YOLO/dental_complete_yolo
+teeth-segmentation-on-dental-x-ray-images-DatasetNinja,Segmentation_Images,598,599,0,75.0,True,_dataSets/_pure images and masks/teeth-segmentation-on-dental-x-ray-images-DatasetNinja
+dental_yolo_archive,YOLO,1269,1269,2,70.0,True,_dataSets/_YOLO/dental_yolo_archive
+dental_yolo_Dental Radiography,YOLO,1269,1269,2,70.0,True,_dataSets/_YOLO/dental_yolo_Dental Radiography
+panoramic-dental-x-rays-DatasetNinja,U-Net,232,233,0,70.0,True,_dataSets/_UNET/panoramic-dental-x-rays-DatasetNinja
+collectrion,YOLO,128,128,0,70.0,True,_dataSets/_YOLO/collectrion
+Dental OPG XRAY Dataset,YOLO,845,836,6,69.7,True,_dataSets/_YOLO/Dental OPG XRAY Dataset
+teeth-segmentation,U-Net,3588,1199,0,60.0,True,_dataSets/_UNET/teeth-segmentation
+dental 2,YOLO,128,64,4,55.0,True,_dataSets/_YOLO/dental 2
+Dental_dataset,COCO,6274,105,1,50.5,True,_dataSets/_COCO/Dental_dataset
+Dental Periapical X-rays,COCO,1882,5,7,45.1,True,_dataSets/_COCO/Dental Periapical X-rays
+dental_coco,COCO,705,3,16,45.1,True,_dataSets/_COCO/dental_coco
+dataset_new,COCO,17967,5,15,45.0,True,_dataSets/_COCO/dataset_new
+Dental X Ray Computacional Vision Segmentation,COCO,16611,3,15,45.0,True,_dataSets/_COCO/Dental X Ray Computacional Vision Segmentation
+Dental periapical x-ray dataset,U-Net,8632,2,0,45.0,True,_dataSets/_UNET/Dental periapical x-ray dataset
+Dental Disease Panoramic Detection Dataset coco,COCO,8423,3,14,45.0,True,_dataSets/_COCO/Dental Disease Panoramic Detection Dataset coco
+Dental X ray (Doctor Smile),Segmentation_Images,2643,0,0,45.0,True,_dataSets/_pure images and masks/Dental X ray (Doctor Smile)
+dental_coco_Dental Radiography,COCO,1269,3,2,40.1,True,_dataSets/_COCO/dental_coco_Dental Radiography
+dental_coco_archive,COCO,1269,3,2,40.1,True,_dataSets/_COCO/dental_coco_archive
+dental caries classificationv3,Segmentation_Images,957,0,0,40.0,True,_dataSets/_pure images and masks/dental caries classificationv3
+diente_x-ray,Segmentation_Images,926,0,0,40.0,True,_dataSets/_pure images and masks/diente_x-ray
+Dental Xrays,Segmentation_Images,700,0,0,40.0,True,_dataSets/_pure images and masks/Dental Xrays
+DentalPanoramicXrays,U-Net,348,0,0,40.0,True,_dataSets/_UNET/DentalPanoramicXrays
+mandibula_dental_panoramic_xrays,U-Net,348,0,0,40.0,True,_dataSets/_UNET/mandibula_dental_panoramic_xrays
+mandibula_DentalPanoramicXrays_split,U-Net,348,0,0,40.0,True,_dataSets/_UNET/mandibula_DentalPanoramicXrays_split
+Dentalimages,Segmentation_Images,178,0,0,40.0,True,_dataSets/_pure images and masks/Dentalimages
+Panoramic Dental Xray Dataset,Segmentation_Images,107,0,0,40.0,True,_dataSets/_pure images and masks/Panoramic Dental Xray Dataset
+Image Dental Panoramic,Segmentation_Images,100,0,0,40.0,True,_dataSets/_pure images and masks/Image Dental Panoramic
+dental-panoramic,Segmentation_Images,100,0,0,40.0,True,_dataSets/_pure images and masks/dental-panoramic
+OPG21.v1i.coco-segmentation,COCO,123,5,3,36.2,True,_dataSets/_COCO/OPG21.v1i.coco-segmentation
+opg12.v1i.coco-segmentation,COCO,50,5,24,33.0,True,_dataSets/_COCO/opg12.v1i.coco-segmentation
+m3.v1i.coco-segmentation,COCO,370,5,3,30.4,True,_dataSets/_COCO/m3.v1i.coco-segmentation

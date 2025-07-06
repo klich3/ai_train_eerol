@@ -1,0 +1,698 @@
+{
+  "yolo_datasets": [
+    "_dataSets/_YOLO/dental_diseases_yolo",
+    "_dataSets/_YOLO/Dental OPG XRAY Dataset",
+    "_dataSets/_YOLO/collectrion",
+    "_dataSets/_YOLO/dental_quadrants_yolo",
+    "_dataSets/_YOLO/Dental Disease Panoramic Detection Dataset",
+    "_dataSets/_YOLO/Dental 3",
+    "_dataSets/_YOLO/dental 2",
+    "_dataSets/_YOLO/dental_yolo_archive",
+    "_dataSets/_YOLO/Dental Diseases",
+    "_dataSets/_YOLO/dental",
+    "_dataSets/_YOLO/dental_datasetv6",
+    "_dataSets/_YOLO/dental_yolo_Dental Radiography",
+    "_dataSets/_YOLO/dental_complete_yolo"
+  ],
+  "coco_datasets": [
+    "_dataSets/_COCO/Dental_dataset",
+    "_dataSets/_COCO/dataset_new",
+    "_dataSets/_COCO/Dental Disease Panoramic Detection Dataset coco",
+    "_dataSets/_COCO/dental_coco_Dental Radiography",
+    "_dataSets/_COCO/m3.v1i.coco-segmentation",
+    "_dataSets/_COCO/opg12.v1i.coco-segmentation",
+    "_dataSets/_COCO/dental_coco",
+    "_dataSets/_COCO/Dental Periapical X-rays",
+    "_dataSets/_COCO/dental_coco_archive",
+    "_dataSets/_COCO/Dental X Ray Computacional Vision Segmentation",
+    "_dataSets/_COCO/OPG21.v1i.coco-segmentation"
+  ],
+  "pure_image_datasets": [
+    "_dataSets/_pure images and masks/teeth-segmentation-on-dental-x-ray-images-DatasetNinja",
+    "_dataSets/_pure images and masks/Dental X ray (Doctor Smile)",
+    "_dataSets/_pure images and masks/Image Dental Panoramic",
+    "_dataSets/_pure images and masks/Dentalimages",
+    "_dataSets/_pure images and masks/dental-panoramic",
+    "_dataSets/_pure images and masks/diente_x-ray",
+    "_dataSets/_pure images and masks/dental caries classificationv3",
+    "_dataSets/_pure images and masks/Dental Xrays",
+    "_dataSets/_pure images and masks/Panoramic Dental Xray Dataset"
+  ],
+  "unet_datasets": [
+    "_dataSets/_UNET/DentalPanoramicXrays",
+    "_dataSets/_UNET/mandibula_dental_panoramic_xrays",
+    "_dataSets/_UNET/panoramic-dental-x-rays-DatasetNinja",
+    "_dataSets/_UNET/mandibula_DentalPanoramicXrays_split",
+    "_dataSets/_UNET/teeth-segmentation",
+    "_dataSets/_UNET/Dental periapical x-ray dataset"
+  ],
+  "total_datasets": 39,
+  "total_images": 117974,
+  "dataset_details": {
+    "_dataSets/_YOLO/dental_diseases_yolo": {
+      "path": "_dataSets/_YOLO/dental_diseases_yolo",
+      "name": "dental_diseases_yolo",
+      "format": "YOLO",
+      "valid": true,
+      "image_count": 705,
+      "annotation_count": 705,
+      "classes": [
+        "Caries",
+        "Deep_Caries",
+        "Impacted",
+        "Periapical_Lesion"
+      ],
+      "structure": {},
+      "quality_score": 75.0
+    },
+    "_dataSets/_YOLO/Dental OPG XRAY Dataset": {
+      "path": "_dataSets/_YOLO/Dental OPG XRAY Dataset",
+      "name": "Dental OPG XRAY Dataset",
+      "format": "YOLO",
+      "valid": true,
+      "image_count": 845,
+      "annotation_count": 836,
+      "classes": [
+        "class_0",
+        "class_1",
+        "class_2",
+        "class_3",
+        "class_4",
+        "class_5"
+      ],
+      "structure": {},
+      "quality_score": 69.68047337278107
+    },
+    "_dataSets/_YOLO/collectrion": {
+      "path": "_dataSets/_YOLO/collectrion",
+      "name": "collectrion",
+      "format": "YOLO",
+      "valid": true,
+      "image_count": 128,
+      "annotation_count": 128,
+      "classes": [],
+      "structure": {},
+      "quality_score": 70.0
+    },
+    "_dataSets/_YOLO/dental_quadrants_yolo": {
+      "path": "_dataSets/_YOLO/dental_quadrants_yolo",
+      "name": "dental_quadrants_yolo",
+      "format": "YOLO",
+      "valid": true,
+      "image_count": 705,
+      "annotation_count": 705,
+      "classes": [
+        "Q1",
+        "Q2",
+        "Q3",
+        "Q4"
+      ],
+      "structure": {},
+      "quality_score": 75.0
+    },
+    "_dataSets/_YOLO/Dental Disease Panoramic Detection Dataset": {
+      "path": "_dataSets/_YOLO/Dental Disease Panoramic Detection Dataset",
+      "name": "Dental Disease Panoramic Detection Dataset",
+      "format": "YOLO",
+      "valid": true,
+      "image_count": 8423,
+      "annotation_count": 8423,
+      "classes": [
+        "Caries",
+        "Crown",
+        "Filling",
+        "Implant",
+        "Malaligned",
+        "Mandibular Canal",
+        "Missing teeth",
+        "Periapical lesion",
+        "Retained root",
+        "Root Canal Treatment",
+        "Root Piece",
+        "croen",
+        "impacted tooth",
+        "maxillary sinus"
+      ],
+      "structure": {},
+      "quality_score": 75.0
+    },
+    "_dataSets/_YOLO/Dental 3": {
+      "path": "_dataSets/_YOLO/Dental 3",
+      "name": "Dental 3",
+      "format": "YOLO",
+      "valid": true,
+      "image_count": 9521,
+      "annotation_count": 9523,
+      "classes": [
+        "Bone Loss"
+      ],
+      "structure": {},
+      "quality_score": 75.0
+    },
+    "_dataSets/_YOLO/dental 2": {
+      "path": "_dataSets/_YOLO/dental 2",
+      "name": "dental 2",
+      "format": "YOLO",
+      "valid": true,
+      "image_count": 128,
+      "annotation_count": 64,
+      "classes": [
+        "class_0",
+        "class_1",
+        "class_2",
+        "class_3"
+      ],
+      "structure": {},
+      "quality_score": 55.0
+    },
+    "_dataSets/_YOLO/dental_yolo_archive": {
+      "path": "_dataSets/_YOLO/dental_yolo_archive",
+      "name": "dental_yolo_archive",
+      "format": "YOLO",
+      "valid": true,
+      "image_count": 1269,
+      "annotation_count": 1269,
+      "classes": [
+        "Fillings",
+        "Implant"
+      ],
+      "structure": {},
+      "quality_score": 70.0
+    },
+    "_dataSets/_YOLO/Dental Diseases": {
+      "path": "_dataSets/_YOLO/Dental Diseases",
+      "name": "Dental Diseases",
+      "format": "YOLO",
+      "valid": true,
+      "image_count": 9206,
+      "annotation_count": 9208,
+      "classes": [
+        "Caries",
+        "Crown",
+        "Filling",
+        "Implant",
+        "Malaligned",
+        "Mandibular Canal",
+        "Missing teeth",
+        "Periapical lesion",
+        "Retained root",
+        "Root Canal Treatment",
+        "Root Piece",
+        "impacted tooth"
+      ],
+      "structure": {},
+      "quality_score": 75.0
+    },
+    "_dataSets/_YOLO/dental": {
+      "path": "_dataSets/_YOLO/dental",
+      "name": "dental",
+      "format": "YOLO",
+      "valid": true,
+      "image_count": 1899,
+      "annotation_count": 3804,
+      "classes": [],
+      "structure": {},
+      "quality_score": 75.0
+    },
+    "_dataSets/_YOLO/dental_datasetv6": {
+      "path": "_dataSets/_YOLO/dental_datasetv6",
+      "name": "dental_datasetv6",
+      "format": "YOLO",
+      "valid": true,
+      "image_count": 8423,
+      "annotation_count": 8425,
+      "classes": [
+        "Caries",
+        "Crown",
+        "Filling",
+        "Implant",
+        "Malaligned",
+        "Mandibular Canal",
+        "Missing teeth",
+        "Periapical lesion",
+        "Retained root",
+        "Root Canal Treatment",
+        "Root Piece",
+        "croen",
+        "impacted tooth",
+        "maxillary sinus"
+      ],
+      "structure": {},
+      "quality_score": 75.0
+    },
+    "_dataSets/_YOLO/dental_yolo_Dental Radiography": {
+      "path": "_dataSets/_YOLO/dental_yolo_Dental Radiography",
+      "name": "dental_yolo_Dental Radiography",
+      "format": "YOLO",
+      "valid": true,
+      "image_count": 1269,
+      "annotation_count": 1269,
+      "classes": [
+        "Fillings",
+        "Implant"
+      ],
+      "structure": {},
+      "quality_score": 70.0
+    },
+    "_dataSets/_YOLO/dental_complete_yolo": {
+      "path": "_dataSets/_YOLO/dental_complete_yolo",
+      "name": "dental_complete_yolo",
+      "format": "YOLO",
+      "valid": true,
+      "image_count": 705,
+      "annotation_count": 705,
+      "classes": [
+        "Q1_Caries",
+        "Q1_Deep_Caries",
+        "Q1_Impacted",
+        "Q1_Periapical_Lesion",
+        "Q2_Caries",
+        "Q2_Deep_Caries",
+        "Q2_Impacted",
+        "Q2_Periapical_Lesion",
+        "Q3_Caries",
+        "Q3_Deep_Caries",
+        "Q3_Impacted",
+        "Q3_Periapical_Lesion",
+        "Q4_Caries",
+        "Q4_Deep_Caries",
+        "Q4_Impacted",
+        "Q4_Periapical_Lesion"
+      ],
+      "structure": {},
+      "quality_score": 75.0
+    },
+    "_dataSets/_COCO/Dental_dataset": {
+      "path": "_dataSets/_COCO/Dental_dataset",
+      "name": "Dental_dataset",
+      "format": "COCO",
+      "valid": true,
+      "image_count": 6274,
+      "annotation_count": 105,
+      "classes": [
+        "龋齿分割"
+      ],
+      "structure": {},
+      "quality_score": 50.50207204335352
+    },
+    "_dataSets/_COCO/dataset_new": {
+      "path": "_dataSets/_COCO/dataset_new",
+      "name": "dataset_new",
+      "format": "COCO",
+      "valid": true,
+      "image_count": 17967,
+      "annotation_count": 5,
+      "classes": [
+        "Caries",
+        "Crown",
+        "Filling",
+        "Implant",
+        "Malaligned",
+        "Mandibular Canal",
+        "Missing teeth",
+        "Periapical lesion",
+        "Retained root",
+        "Root Canal Treatment",
+        "Root Piece",
+        "croen",
+        "impacted tooth",
+        "maxillary sinus",
+        "vzrad2"
+      ],
+      "structure": {},
+      "quality_score": 45.008348639171814
+    },
+    "_dataSets/_COCO/Dental Disease Panoramic Detection Dataset coco": {
+      "path": "_dataSets/_COCO/Dental Disease Panoramic Detection Dataset coco",
+      "name": "Dental Disease Panoramic Detection Dataset coco",
+      "format": "COCO",
+      "valid": true,
+      "image_count": 8423,
+      "annotation_count": 3,
+      "classes": [
+        "Caries",
+        "Crown",
+        "Filling",
+        "Implant",
+        "Malaligned",
+        "Mandibular Canal",
+        "Missing teeth",
+        "Periapical lesion",
+        "Retained root",
+        "Root Canal Treatment",
+        "Root Piece",
+        "croen",
+        "impacted tooth",
+        "maxillary sinus"
+      ],
+      "structure": {},
+      "quality_score": 45.01068502908703
+    },
+    "_dataSets/_COCO/dental_coco_Dental Radiography": {
+      "path": "_dataSets/_COCO/dental_coco_Dental Radiography",
+      "name": "dental_coco_Dental Radiography",
+      "format": "COCO",
+      "valid": true,
+      "image_count": 1269,
+      "annotation_count": 3,
+      "classes": [
+        "Fillings",
+        "Implant"
+      ],
+      "structure": {},
+      "quality_score": 40.0709219858156
+    },
+    "_dataSets/_COCO/m3.v1i.coco-segmentation": {
+      "path": "_dataSets/_COCO/m3.v1i.coco-segmentation",
+      "name": "m3.v1i.coco-segmentation",
+      "format": "COCO",
+      "valid": true,
+      "image_count": 370,
+      "annotation_count": 5,
+      "classes": [
+        "Mandible",
+        "Maxilla",
+        "m3"
+      ],
+      "structure": {},
+      "quality_score": 30.405405405405403
+    },
+    "_dataSets/_COCO/opg12.v1i.coco-segmentation": {
+      "path": "_dataSets/_COCO/opg12.v1i.coco-segmentation",
+      "name": "opg12.v1i.coco-segmentation",
+      "format": "COCO",
+      "valid": true,
+      "image_count": 50,
+      "annotation_count": 5,
+      "classes": [
+        "ABCESS",
+        "ANKYOLISED TOOTH",
+        "ATTRITED TOOTH",
+        "BONE LOSS",
+        "CARIES",
+        "CONDYLE",
+        "CROWN",
+        "CROWN AND BRIDGE",
+        "ERUPTING TOOTH",
+        "FURCATION INVOLVEMENT",
+        "GROSSLY DECAYED TOOTH",
+        "HARD PALATE",
+        "IMPACTED TOOTH",
+        "INFERIOR ALVEOLAR NERVE CANAL",
+        "INFERIOR BORDER OF MANDIBLE",
+        "NERVE CANAL",
+        "RAMUS OF MANDIBLE",
+        "RESTORATION",
+        "ROOT CANAL TREATED TOOTH",
+        "ROOT STUMP",
+        "SHORTENED RCT",
+        "VERTICAL BONE LOSS",
+        "maxillary sinus",
+        "teeth12"
+      ],
+      "structure": {},
+      "quality_score": 33.0
+    },
+    "_dataSets/_COCO/dental_coco": {
+      "path": "_dataSets/_COCO/dental_coco",
+      "name": "dental_coco",
+      "format": "COCO",
+      "valid": true,
+      "image_count": 705,
+      "annotation_count": 3,
+      "classes": [
+        "Q1_Caries",
+        "Q1_Deep_Caries",
+        "Q1_Impacted",
+        "Q1_Periapical_Lesion",
+        "Q2_Caries",
+        "Q2_Deep_Caries",
+        "Q2_Impacted",
+        "Q2_Periapical_Lesion",
+        "Q3_Caries",
+        "Q3_Deep_Caries",
+        "Q3_Impacted",
+        "Q3_Periapical_Lesion",
+        "Q4_Caries",
+        "Q4_Deep_Caries",
+        "Q4_Impacted",
+        "Q4_Periapical_Lesion"
+      ],
+      "structure": {},
+      "quality_score": 45.12765957446808
+    },
+    "_dataSets/_COCO/Dental Periapical X-rays": {
+      "path": "_dataSets/_COCO/Dental Periapical X-rays",
+      "name": "Dental Periapical X-rays",
+      "format": "COCO",
+      "valid": true,
+      "image_count": 1882,
+      "annotation_count": 5,
+      "classes": [
+        "Badly Decayed",
+        "Caries",
+        "Crown",
+        "Normal",
+        "RCT",
+        "Restoration",
+        "dental-RCT-endo-restoration-caries-dental-UGJG-Vo5l-CZam"
+      ],
+      "structure": {},
+      "quality_score": 45.079702444208294
+    },
+    "_dataSets/_COCO/dental_coco_archive": {
+      "path": "_dataSets/_COCO/dental_coco_archive",
+      "name": "dental_coco_archive",
+      "format": "COCO",
+      "valid": true,
+      "image_count": 1269,
+      "annotation_count": 3,
+      "classes": [
+        "Fillings",
+        "Implant"
+      ],
+      "structure": {},
+      "quality_score": 40.0709219858156
+    },
+    "_dataSets/_COCO/Dental X Ray Computacional Vision Segmentation": {
+      "path": "_dataSets/_COCO/Dental X Ray Computacional Vision Segmentation",
+      "name": "Dental X Ray Computacional Vision Segmentation",
+      "format": "COCO",
+      "valid": true,
+      "image_count": 16611,
+      "annotation_count": 3,
+      "classes": [
+        "Caries",
+        "Crown",
+        "Filling",
+        "Implant",
+        "Malaligned",
+        "Mandibular Canal",
+        "Missing teeth",
+        "Periapical lesion",
+        "Retained root",
+        "Root Canal Treatment",
+        "Root Piece",
+        "croen",
+        "impacted tooth",
+        "maxillary sinus",
+        "vzrad2"
+      ],
+      "structure": {},
+      "quality_score": 45.00541809644211
+    },
+    "_dataSets/_COCO/OPG21.v1i.coco-segmentation": {
+      "path": "_dataSets/_COCO/OPG21.v1i.coco-segmentation",
+      "name": "OPG21.v1i.coco-segmentation",
+      "format": "COCO",
+      "valid": true,
+      "image_count": 123,
+      "annotation_count": 5,
+      "classes": [
+        "MAXILLARY  SINUS",
+        "RAMUS OF MANDIBLE",
+        "teeth"
+      ],
+      "structure": {},
+      "quality_score": 36.21951219512195
+    },
+    "_dataSets/_pure images and masks/teeth-segmentation-on-dental-x-ray-images-DatasetNinja": {
+      "path": "_dataSets/_pure images and masks/teeth-segmentation-on-dental-x-ray-images-DatasetNinja",
+      "name": "teeth-segmentation-on-dental-x-ray-images-DatasetNinja",
+      "format": "Segmentation_Images",
+      "valid": true,
+      "image_count": 598,
+      "annotation_count": 599,
+      "classes": [],
+      "structure": {},
+      "quality_score": 75.0
+    },
+    "_dataSets/_pure images and masks/Dental X ray (Doctor Smile)": {
+      "path": "_dataSets/_pure images and masks/Dental X ray (Doctor Smile)",
+      "name": "Dental X ray (Doctor Smile)",
+      "format": "Segmentation_Images",
+      "valid": true,
+      "image_count": 2643,
+      "annotation_count": 0,
+      "classes": [],
+      "structure": {},
+      "quality_score": 45.0
+    },
+    "_dataSets/_pure images and masks/Image Dental Panoramic": {
+      "path": "_dataSets/_pure images and masks/Image Dental Panoramic",
+      "name": "Image Dental Panoramic",
+      "format": "Segmentation_Images",
+      "valid": true,
+      "image_count": 100,
+      "annotation_count": 0,
+      "classes": [],
+      "structure": {},
+      "quality_score": 40.0
+    },
+    "_dataSets/_pure images and masks/Dentalimages": {
+      "path": "_dataSets/_pure images and masks/Dentalimages",
+      "name": "Dentalimages",
+      "format": "Segmentation_Images",
+      "valid": true,
+      "image_count": 178,
+      "annotation_count": 0,
+      "classes": [],
+      "structure": {},
+      "quality_score": 40.0
+    },
+    "_dataSets/_pure images and masks/dental-panoramic": {
+      "path": "_dataSets/_pure images and masks/dental-panoramic",
+      "name": "dental-panoramic",
+      "format": "Segmentation_Images",
+      "valid": true,
+      "image_count": 100,
+      "annotation_count": 0,
+      "classes": [],
+      "structure": {},
+      "quality_score": 40.0
+    },
+    "_dataSets/_pure images and masks/diente_x-ray": {
+      "path": "_dataSets/_pure images and masks/diente_x-ray",
+      "name": "diente_x-ray",
+      "format": "Segmentation_Images",
+      "valid": true,
+      "image_count": 926,
+      "annotation_count": 0,
+      "classes": [],
+      "structure": {},
+      "quality_score": 40.0
+    },
+    "_dataSets/_pure images and masks/dental caries classificationv3": {
+      "path": "_dataSets/_pure images and masks/dental caries classificationv3",
+      "name": "dental caries classificationv3",
+      "format": "Segmentation_Images",
+      "valid": true,
+      "image_count": 957,
+      "annotation_count": 0,
+      "classes": [],
+      "structure": {},
+      "quality_score": 40.0
+    },
+    "_dataSets/_pure images and masks/Dental Xrays": {
+      "path": "_dataSets/_pure images and masks/Dental Xrays",
+      "name": "Dental Xrays",
+      "format": "Segmentation_Images",
+      "valid": true,
+      "image_count": 700,
+      "annotation_count": 0,
+      "classes": [],
+      "structure": {},
+      "quality_score": 40.0
+    },
+    "_dataSets/_pure images and masks/Panoramic Dental Xray Dataset": {
+      "path": "_dataSets/_pure images and masks/Panoramic Dental Xray Dataset",
+      "name": "Panoramic Dental Xray Dataset",
+      "format": "Segmentation_Images",
+      "valid": true,
+      "image_count": 107,
+      "annotation_count": 0,
+      "classes": [],
+      "structure": {},
+      "quality_score": 40.0
+    },
+    "_dataSets/_UNET/DentalPanoramicXrays": {
+      "path": "_dataSets/_UNET/DentalPanoramicXrays",
+      "name": "DentalPanoramicXrays",
+      "format": "U-Net",
+      "valid": true,
+      "image_count": 348,
+      "annotation_count": 0,
+      "classes": [],
+      "structure": {},
+      "quality_score": 40.0
+    },
+    "_dataSets/_UNET/mandibula_dental_panoramic_xrays": {
+      "path": "_dataSets/_UNET/mandibula_dental_panoramic_xrays",
+      "name": "mandibula_dental_panoramic_xrays",
+      "format": "U-Net",
+      "valid": true,
+      "image_count": 348,
+      "annotation_count": 0,
+      "classes": [],
+      "structure": {},
+      "quality_score": 40.0
+    },
+    "_dataSets/_UNET/panoramic-dental-x-rays-DatasetNinja": {
+      "path": "_dataSets/_UNET/panoramic-dental-x-rays-DatasetNinja",
+      "name": "panoramic-dental-x-rays-DatasetNinja",
+      "format": "U-Net",
+      "valid": true,
+      "image_count": 232,
+      "annotation_count": 233,
+      "classes": [],
+      "structure": {},
+      "quality_score": 70.0
+    },
+    "_dataSets/_UNET/mandibula_DentalPanoramicXrays_split": {
+      "path": "_dataSets/_UNET/mandibula_DentalPanoramicXrays_split",
+      "name": "mandibula_DentalPanoramicXrays_split",
+      "format": "U-Net",
+      "valid": true,
+      "image_count": 348,
+      "annotation_count": 0,
+      "classes": [],
+      "structure": {},
+      "quality_score": 40.0
+    },
+    "_dataSets/_UNET/teeth-segmentation": {
+      "path": "_dataSets/_UNET/teeth-segmentation",
+      "name": "teeth-segmentation",
+      "format": "U-Net",
+      "valid": true,
+      "image_count": 3588,
+      "annotation_count": 1199,
+      "classes": [],
+      "structure": {},
+      "quality_score": 60.025083612040135
+    },
+    "_dataSets/_UNET/Dental periapical x-ray dataset": {
+      "path": "_dataSets/_UNET/Dental periapical x-ray dataset",
+      "name": "Dental periapical x-ray dataset",
+      "format": "U-Net",
+      "valid": true,
+      "image_count": 8632,
+      "annotation_count": 2,
+      "classes": [],
+      "structure": {},
+      "quality_score": 45.006950880444855
+    }
+  },
+  "class_distribution": {},
+  "format_distribution": {
+    "YOLO": 13,
+    "COCO": 11,
+    "Segmentation_Images": 9,
+    "U-Net": 6
+  },
+  "quality_metrics": {},
+  "metadata": {
+    "analysis_date": "2025-07-06T00:38:18.837576",
+    "analyzer_version": "1.0",
+    "base_path": "_dataSets"
+  }
+}

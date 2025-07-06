@@ -1,0 +1,22 @@
+paths:
+  api: api/
+  datasets: datasets/
+  logs: training/logs/
+  models: models/
+  training: training/
+project:
+  created: '2025-07-06T00:38:00.631170'
+  description: Sistema de análisis dental con IA
+  name: dental-ai
+  version: 1.0.0
+safety:
+  create_backups: true
+  preserve_originals: true
+  read_only_source: true
+  verify_copies: true
+training:
+  default_batch_size: 16
+  default_epochs: 100
+  default_img_size: 640
+  patience: 20
+  save_period: 10
