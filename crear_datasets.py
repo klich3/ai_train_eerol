@@ -20,7 +20,7 @@ def crear_estructura_yolo_ejemplo():
     print("🎯 CREANDO DATASET YOLO DE EJEMPLO...")
     
     # Crear directorio base
-    dataset_path = Path("Dist/dental_ai/datasets/yolo")
+    dataset_path = Path("Results/datasets/yolo")
     dataset_path.mkdir(parents=True, exist_ok=True)
     
     # Crear subdirectorios
@@ -105,7 +105,7 @@ def crear_estructura_coco_ejemplo():
     print("🎭 CREANDO DATASET COCO DE EJEMPLO...")
     
     # Crear directorio base
-    dataset_path = Path("Dist/dental_ai/datasets/coco")
+    dataset_path = Path("Results/datasets/coco")
     dataset_path.mkdir(parents=True, exist_ok=True)
     
     # Crear subdirectorios
@@ -192,7 +192,7 @@ def crear_estructura_unet_ejemplo():
     print("🧩 CREANDO DATASET U-NET DE EJEMPLO...")
     
     # Crear directorio base
-    dataset_path = Path("Dist/dental_ai/datasets/unet")
+    dataset_path = Path("Results/datasets/unet")
     dataset_path.mkdir(parents=True, exist_ok=True)
     
     # Crear subdirectorios
@@ -240,7 +240,7 @@ def crear_estructura_clasificacion_ejemplo():
     print("📂 CREANDO DATASET CLASIFICACIÓN DE EJEMPLO...")
     
     # Crear directorio base
-    dataset_path = Path("Dist/dental_ai/datasets/classification")
+    dataset_path = Path("Results/datasets/classification")
     dataset_path.mkdir(parents=True, exist_ok=True)
     
     # Clases dentales
@@ -294,7 +294,7 @@ def convertir_datasets_existentes():
     """Convertir datasets existentes a las nuevas estructuras."""
     print("🔄 CONVIRTIENDO DATASETS EXISTENTES...")
     
-    datasets_source = Path("Dist/dental_ai/datasets")
+    datasets_source = Path("Results/datasets")
     if not datasets_source.exists():
         print("❌ No se encontró el directorio de datasets")
         return
@@ -362,7 +362,7 @@ def verificar_estructura_final():
     """Verificar la estructura final de datasets."""
     print("\n📊 VERIFICANDO ESTRUCTURA FINAL...")
     
-    datasets_dir = Path("Dist/dental_ai/datasets")
+    datasets_dir = Path("Results/datasets")
     
     if not datasets_dir.exists():
         print("❌ Directorio datasets no existe")
@@ -430,7 +430,7 @@ def main():
     print("\n✨ PRÓXIMOS PASOS:")
     print("1. 📝 Ejecuta: python smart_dental_workflow.py")
     print("2. 🎯 Selecciona opción 7: Generar scripts de entrenamiento")
-    print("3. 🚀 Los scripts estarán en: Dist/dental_ai/scripts/")
+    print("3. 🚀 Los scripts estarán en: Results/scripts/")
 
 if __name__ == "__main__":
     main()

@@ -17,7 +17,7 @@ def test_structure_generator():
         print("🧪 TEST: STRUCTURE GENERATOR DIRECTO")
         print("="*40)
         
-        output_path = Path("Dist/dental_ai")
+        output_path = Path("Results")
         print(f"📂 Output path: {output_path}")
         
         # Crear StructureGenerator

@@ -42,7 +42,7 @@ def print_banner():
     📊 Análisis • 🔄 Fusión • 🏗️ Estructura • 🚀 API
     
     🛡️ MODO SEGURO: Solo lectura en origen
-    📂 Salida: Dist/dental_ai/
+    📂 Salida: Results/
     """
     print(banner)
 
@@ -65,21 +65,16 @@ def show_main_menu():
     ║  6. Crear dataset de clasificación                           ║
     ║  7. Balancear datasets (augmentación)                        ║
     ║                                                              ║
-    ║  🏗️ ESTRUCTURA Y SCRIPTS                                     ║
-    ║  8. Crear estructura dental-ai completa                      ║
-    ║  9. Generar scripts de entrenamiento                         ║
-    ║  10. Crear template de API                                   ║
+    ║  📋 PREVISUALIZACIÓN                                         ║
+    ║  8. Previsualizar anotaciones de datasets                    ║
     ║                                                              ║
-    ║  � PREVISUALIZACIÓN                                         ║
-    ║  15. Previsualizar anotaciones de datasets                   ║
-    ║                                                              ║
-    ║  �🚀 WORKFLOW COMPLETO                                        ║
-    ║  11. Ejecutar workflow completo automático                   ║
+    ║  🚀 WORKFLOW COMPLETO                                        ║
+    ║  9. Ejecutar workflow completo automático                    ║
     ║                                                              ║
     ║  ℹ️ INFORMACIÓN                                              ║
-    ║  12. Ver configuración actual                                ║
-    ║  13. Estadísticas de datasets                                ║
-    ║  14. Ayuda y documentación                                   ║
+    ║  10. Ver configuración actual                                ║
+    ║  11. Estadísticas de datasets                                ║
+    ║  12. Ayuda y documentación                                   ║
     ║                                                              ║
     ║  0. Salir                                                    ║
     ║                                                              ║
@@ -138,11 +133,11 @@ def show_help():
     🛡️ GARANTÍAS DE SEGURIDAD:
     • Todos los datasets originales permanecen INTACTOS
     • Solo operaciones de LECTURA en directorios fuente
-    • Todas las modificaciones se hacen en Dist/dental_ai/
+    • Todas las modificaciones se hacen en Results/
     • Verificación de integridad en todas las copias
     
     📁 ESTRUCTURA DE SALIDA:
-    Dist/dental_ai/
+    Results/
     ├── datasets/          # Datasets procesados
     ├── models/           # Modelos entrenados
     ├── training/         # Scripts de entrenamiento
@@ -173,7 +168,7 @@ def main():
     
     # Configurar rutas por defecto
     base_path = "_dataSets"
-    output_path = "Dist/dental_ai"
+    output_path = "Results"
     
     # Verificar si existe el directorio fuente
     if not Path(base_path).exists():
@@ -357,64 +352,113 @@ def main():
                         print("❌ Entrada inválida")
             
             elif choice == '8':
-                print(f"\n🏗️ CREANDO ESTRUCTURA DENTAL-AI COMPLETA...")
-                confirm = input("¿Proceder? (s/N): ").strip().lower()
+                print(f"\n📋 PREVISUALIZANDO ANOTACIONES DE DATASETS...")
                 
-                if confirm in ['s', 'si', 'sí', 'yes', 'y']:
-                    try:
-                        manager.create_dental_ai_structure()
-                        
-                        print(f"\n✅ Estructura dental-ai creada en: {manager.output_path}")
-                        print(f"📂 Directorios principales:")
-                        print(f"   • datasets/ (datasets procesados)")
-                        print(f"   • models/ (modelos entrenados)")
-                        print(f"   • training/ (scripts y configuraciones)")
-                        print(f"   • api/ (API de inferencia)")
-                        print(f"   • docs/ (documentación)")
-                    except Exception as e:
-                        print(f"❌ Error al crear estructura: {e}")
-                        print(f"💡 Verificando integridad del sistema...")
+                # Buscar datasets con anotaciones
+                datasets_with_annotations = []
+                
+                detection_path = manager.output_path / "datasets" / "detection_combined"
+                if detection_path.exists():
+                    datasets_with_annotations.append(("YOLO Detection", detection_path))
+                
+                coco_path = manager.output_path / "datasets" / "segmentation_coco"
+                if coco_path.exists():
+                    datasets_with_annotations.append(("COCO Segmentation", coco_path))
+                
+                if not datasets_with_annotations:
+                    print("⚠️ No hay datasets procesados para previsualizar")
+                    print("💡 Ejecuta primero las opciones 4-5 para crear datasets")
                 else:
-                    print("❌ Operación cancelada")
+                    print(f"\n� Datasets disponibles para previsualizar:")
+                    for i, (name, path) in enumerate(datasets_with_annotations, 1):
+                        print(f"   {i}. {name}")
+                    
+                    choice_preview = input("Selecciona dataset (número): ").strip()
+                    
+                    try:
+                        idx = int(choice_preview) - 1
+                        if 0 <= idx < len(datasets_with_annotations):
+                            name, path = datasets_with_annotations[idx]
+                            print(f"\n🔍 Previsualizando {name}...")
+                            
+                            try:
+                                visualizer.preview_annotations(path, num_samples=5)
+                                print(f"✅ Previsualización completada")
+                                print(f"📁 Imágenes guardadas en: {path}/preview/")
+                            except Exception as e:
+                                print(f"❌ Error en previsualización: {e}")
+                        else:
+                            print("❌ Selección inválida")
+                    except ValueError:
+                        print("❌ Entrada inválida")
             
             elif choice == '9':
-                print(f"\n📝 GENERANDO SCRIPTS DE ENTRENAMIENTO...")
-                confirm = input("¿Proceder? (s/N): ").strip().lower()
+                print(f"\n� EJECUTANDO WORKFLOW COMPLETO AUTOMÁTICO...")
+                print(f"Este proceso:")
+                print(f"   📊 Analiza todos los datasets")
+                print(f"   🔄 Fusiona datasets compatibles")
+                print(f"   🏗️ Crea estructura completa")
+                print(f"   📝 Genera scripts de entrenamiento")
+                print(f"   🌐 Configura API")
+                
+                confirm = input("\n¿Proceder con el workflow completo? (s/N): ").strip().lower()
                 
                 if confirm in ['s', 'si', 'sí', 'yes', 'y']:
                     try:
-                        manager.create_training_scripts()
+                        manager.run_complete_workflow()
                         
-                        print(f"\n✅ Scripts de entrenamiento generados:")
-                        print(f"   📝 YOLO: {manager.output_path}/training/scripts/train_yolo.py")
-                        print(f"   📝 U-Net: {manager.output_path}/training/scripts/train_unet.py")
-                        print(f"   📝 Classification: {manager.output_path}/training/scripts/train_classification.py")
-                        print(f"   ⚙️ Configuraciones en: {manager.output_path}/training/configs/")
+                        print(f"\n🎉 WORKFLOW COMPLETO FINALIZADO!")
+                        print(f"📂 Todo está listo en: {manager.output_path}")
+                        print(f"📋 Revisa el reporte en: {manager.output_path}/workflow_report.json")
                     except Exception as e:
-                        print(f"❌ Error al generar scripts: {e}")
-                        print(f"💡 Asegúrate de que la estructura dental-ai está creada (opción 8)")
+                        print(f"❌ Error en workflow: {e}")
+                        print(f"💡 Revisa el log para más detalles")
                 else:
                     print("❌ Operación cancelada")
             
             elif choice == '10':
-                print(f"\n🌐 CREANDO TEMPLATE DE API...")
-                confirm = input("¿Proceder? (s/N): ").strip().lower()
-                
-                if confirm in ['s', 'si', 'sí', 'yes', 'y']:
-                    manager.create_api_template()
-                    
-                    print(f"\n✅ Template de API creado:")
-                    print(f"   📝 Archivo principal: {manager.output_path}/api/main.py")
-                    print(f"   📋 Requirements: {manager.output_path}/api/requirements.txt")
-                    print(f"\n🚀 Para usar la API:")
-                    print(f"   cd {manager.output_path}/api")
-                    print(f"   pip install -r requirements.txt")
-                    print(f"   python main.py")
-                    print(f"   Navega a: http://localhost:8000/docs")
-                else:
-                    print("❌ Operación cancelada")
+                show_config_info(manager)
             
             elif choice == '11':
+                print(f"\n📊 ESTADÍSTICAS DE DATASETS:")
+                try:
+                    stats = manager.get_dataset_statistics()
+                    
+                    if stats:
+                        print(f"\n📈 RESUMEN GENERAL:")
+                        print(f"   � Total datasets: {stats.get('total_datasets', 0)}")
+                        print(f"   📸 Total imágenes: {stats.get('total_images', 0):,}")
+                        print(f"   🏷️ Total anotaciones: {stats.get('total_annotations', 0):,}")
+                        print(f"   📋 Formatos detectados: {len(stats.get('format_distribution', {}))}")
+                        
+                        format_dist = stats.get('format_distribution', {})
+                        if format_dist:
+                            print(f"\n📊 DISTRIBUCIÓN POR FORMATO:")
+                            for fmt, count in format_dist.items():
+                                print(f"     {fmt}: {count} datasets")
+                        
+                        class_dist = stats.get('unified_class_distribution', {})
+                        if class_dist:
+                            print(f"\n🏷️ DISTRIBUCIÓN DE CLASES UNIFICADAS:")
+                            sorted_classes = sorted(class_dist.items(), key=lambda x: x[1], reverse=True)
+                            for class_name, count in sorted_classes[:10]:  # Top 10
+                                print(f"     {class_name}: {count:,} instancias")
+                            
+                            if len(sorted_classes) > 10:
+                                print(f"     ... y {len(sorted_classes) - 10} clases más")
+                    else:
+                        print("⚠️ No hay estadísticas disponibles")
+                        print("💡 Ejecuta la opción 1 para generar estadísticas")
+                except Exception as e:
+                    print(f"❌ Error al obtener estadísticas: {e}")
+            
+            elif choice == '12':
+                show_help()
+            
+            elif choice == '0':
+                print("\n� ¡Gracias por usar Dental AI Workflow Manager!")
+                print("📂 Todos los resultados están en: Results/")
+                break
                 print(f"\n🚀 EJECUTANDO WORKFLOW COMPLETO AUTOMÁTICO...")
                 print(f"Esta operación realizará:")
                 print(f"   1. 🏗️ Crear estructura dental-ai")

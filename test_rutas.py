@@ -109,7 +109,7 @@ def main():
     print("=" * 50)
     
     # Cambiar al directorio correcto
-    script_dir = Path(__file__).parent / "Dist" / "dental_ai" / "training"
+    script_dir = Path(__file__).parent / "Results" / "training"
     os.chdir(script_dir)
     print(f"📁 Directorio de trabajo: {os.getcwd()}")
     

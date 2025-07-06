@@ -25,11 +25,11 @@ class DentalDataWorkflowManager:
         # Configurar rutas
         self.base_path = Path(base_path) if base_path else Path("_dataSets")
         
-        # Cambiar a Dist/dental_ai como salida final
+        # Usar Results como salida final
         if output_path:
             self.output_path = Path(output_path)
         else:
-            self.output_path = Path("Dist") / "dental_ai"
+            self.output_path = Path("Results")
         
         # Crear directorio de salida si no existe
         self.output_path.mkdir(parents=True, exist_ok=True)
@@ -107,6 +107,9 @@ class DentalDataWorkflowManager:
         self.processor = DataProcessor(self.unified_classes, self.standard_resolutions, self.safety_config)
         self.structure_generator = StructureGenerator(self.output_path)
         self.script_generator = ScriptTemplateGenerator(self.output_path)
+        
+        # Crear estructura dental-ai automáticamente
+        self._ensure_dental_ai_structure()
         
         # Logging
         self.log_entries = []
@@ -226,8 +229,8 @@ class DentalDataWorkflowManager:
         self.log_message("🚀 INICIANDO WORKFLOW COMPLETO...")
         
         try:
-            # 1. Crear estructura
-            self.create_dental_ai_structure()
+            # 1. La estructura ya existe (se crea automáticamente en __init__)
+            self.log_message("🏗️ Estructura dental-ai ya disponible")
             
             # 2. Analizar datasets
             analysis = self.scan_and_analyze_datasets()
@@ -296,3 +299,17 @@ class DentalDataWorkflowManager:
                 return False
         
         return True
+    
+    def _ensure_dental_ai_structure(self):
+        """🏗️ Asegura que la estructura dental-ai existe (método privado)."""
+        try:
+            # Verificar si ya existe la estructura básica
+            required_dirs = ['datasets', 'models', 'training', 'api', 'docs']
+            structure_exists = all((self.output_path / dir_name).exists() for dir_name in required_dirs)
+            
+            if not structure_exists:
+                print(f"🏗️ Inicializando estructura dental-ai en: {self.output_path}")
+                self.structure_generator.create_dental_ai_structure()
+                print(f"✅ Estructura dental-ai lista")
+        except Exception as e:
+            print(f"⚠️ Error inicializando estructura: {e}")

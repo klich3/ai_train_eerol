@@ -15,7 +15,7 @@ def diagnosticar_problema():
     print("=" * 60)
     
     # Verificar estructura de salida
-    output_path = Path("Dist/dental_ai")
+    output_path = Path("Results")
     print(f"📂 Verificando directorio de salida: {output_path}")
     print(f"   Existe: {output_path.exists()}")
     
@@ -55,7 +55,7 @@ def diagnosticar_problema():
         
         manager = SmartDentalWorkflowManager(
             base_path="_dataSets",
-            output_path="Dist/dental_ai_diagnostico"
+            output_path="Results_diagnostico"
         )
         
         print("✅ Manager inicializado")
@@ -68,7 +68,7 @@ def diagnosticar_problema():
         print(f"   conversion_results: {len(manager.conversion_results)}")
         
         # Crear directorios de prueba
-        test_output = Path("Dist/dental_ai_diagnostico")
+        test_output = Path("Results_diagnostico")
         test_scripts = test_output / "scripts"
         test_datasets = test_output / "datasets"
         test_yolo = test_datasets / "yolo"
@@ -113,7 +113,7 @@ def diagnosticar_problema():
     print()
     print("2. O usar el workflow completo (opción 8)")
     print()
-    print("3. Verificar que tienes permisos de escritura en Dist/")
+    print("3. Verificar que tienes permisos de escritura en Results/")
 
 def mostrar_flujo_correcto():
     """Mostrar el flujo correcto para generar scripts."""

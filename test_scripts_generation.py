@@ -20,7 +20,7 @@ def test_script_generation():
         # Inicializar con tu estructura existente
         manager = SmartDentalWorkflowManager(
             base_path="_dataSets",
-            output_path="Dist/dental_ai"
+            output_path="Results"
         )
         
         print("✅ Manager inicializado")

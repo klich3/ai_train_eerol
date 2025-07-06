@@ -17,7 +17,7 @@ def test_direct_api_creation():
         print("🧪 TEST DIRECTO: API TEMPLATE GENERATOR")
         print("="*45)
         
-        output_path = Path("Dist/dental_ai")
+        output_path = Path("Results")
         generator = ScriptTemplateGenerator(output_path)
         print("✅ ScriptTemplateGenerator creado")
         
