@@ -1,204 +1,204 @@
 # 🔧 EEROL - Universal Dataset Management Tool
 
-**EEROL** es una herramienta universal para la gestión de datasets de visión por computador. Permite escanear, analizar, convertir, dividir y entrenar modelos con datasets en diferentes formatos.
+**EEROL** is a universal tool for computer vision dataset management. It allows scanning, analyzing, converting, splitting, and training models with datasets in various formats.
 
-## ✨ Características
+## ✨ Features
 
-- 🔍 **Escaneo automático** de datasets en cualquier directorio
-- 📊 **Análisis detallado** de estructura, formatos y categorías
-- 🔄 **Conversión** entre formatos (YOLO ↔ COCO ↔ Pascal VOC)
-- ✂️ **División personalizada** con proporciones configurables (train/val/test)
-- 🚀 **Generación automática** de scripts de entrenamiento
-- 👁️ **Previsualización** de anotaciones sobre imágenes
-- 🧹 **Limpieza automática** de archivos innecesarios
-- 🎯 **Soporte múltiple** para YOLO, COCO, PyTorch, TensorFlow, U-Net
+- 🔍 **Automatic scanning** of datasets in any directory
+- 📊 **Detailed analysis** of structure, formats, and categories
+- 🔄 **Conversion** between formats (YOLO ↔ COCO ↔ Pascal VOC)
+- ✂️ **Custom splitting** with configurable proportions (train/val/test)
+- 🚀 **Automatic generation** of training scripts
+- 👁️ **Annotation preview** on images
+- 🧹 **Automatic cleanup** of unnecessary files
+- 🎯 **Multi-format support** for YOLO, COCO, PyTorch, TensorFlow, U-Net
 
-## 🚀 Instalación
+## 🚀 Installation
 
-1. **Clonar o descargar** este repositorio
-2. **Instalar dependencias**:
+1. **Clone or download** this repository
+2. **Install dependencies**:
    ```bash
    pip install -r requirements.txt
    ```
-3. **Hacer ejecutable** (en Linux/macOS):
+3. **Make executable** (on Linux/macOS):
    ```bash
    chmod +x eerol.py
    ```
 
-## 📋 Uso
+## 📋 Usage
 
-### Modo Interactivo
+### Interactive Mode
 
 ```bash
 python eerol.py
 ```
 
-### Línea de Comandos
+### Command Line
 
-#### Escanear datasets
-
-```bash
-python eerol.py scan --path /ruta/a/datasets
-python eerol.py scan  # Usa directorio actual o HOME
-```
-
-#### Convertir formato
+#### Scan datasets
 
 ```bash
-python eerol.py convert --input-path /ruta/dataset --format yolo --name mi_dataset
-python eerol.py convert --input-path /ruta/dataset --format coco
+python eerol.py scan --path /path/to/datasets
+python eerol.py scan  # Uses current directory or HOME
 ```
 
-#### Previsualizar anotaciones
+#### Convert format
 
 ```bash
-python eerol.py preview --image imagen.jpg --annotation annotation.txt --format yolo
-python eerol.py preview --image imagen.jpg --annotation annotation.xml --format pascal_voc
+python eerol.py convert --input-path /path/dataset --format yolo --name my_dataset
+python eerol.py convert --input-path /path/dataset --format coco
 ```
 
-#### Dividir dataset
+#### Preview annotations
 
 ```bash
-python eerol.py split --input-path /ruta/dataset --train-ratio 0.7 --val-ratio 0.3
-python eerol.py split --input-path /ruta/dataset --train-ratio 0.6 --val-ratio 0.2 --test-ratio 0.2
+python eerol.py preview --image image.jpg --annotation annotation.txt --format yolo
+python eerol.py preview --image image.jpg --annotation annotation.xml --format pascal_voc
 ```
 
-#### Listar datasets de entrenamiento
+#### Split dataset
+
+```bash
+python eerol.py split --input-path /path/dataset --train-ratio 0.7 --val-ratio 0.3
+python eerol.py split --input-path /path/dataset --train-ratio 0.6 --val-ratio 0.2 --test-ratio 0.2
+```
+
+#### List training datasets
 
 ```bash
 python eerol.py list
 ```
 
-#### Entrenar modelo
+#### Train model
 
 ```bash
-python eerol.py train --dataset mi_dataset
-python eerol.py train  # Selección interactiva
+python eerol.py train --dataset my_dataset
+python eerol.py train  # Interactive selection
 ```
 
-#### Limpiar archivos
+#### Clean files
 
 ```bash
 python eerol.py clean
 ```
 
-## 📁 Estructura de Salida
+## 📁 Output Structure
 
-EEROL genera los datasets en la carpeta `Train/` con la siguiente estructura:
+EEROL generates datasets in the `Train/` folder with the following structure:
 
 ```
 Train/
-├── mi_dataset_yolo/
+├── my_dataset_yolo/
 │   ├── train/
 │   │   ├── images/
 │   │   └── labels/
 │   ├── val/
 │   │   ├── images/
 │   │   └── labels/
-│   ├── test/           # Opcional
+│   ├── test/           # Optional
 │   │   ├── images/
 │   │   └── labels/
-│   ├── data.yaml       # Configuración YOLO
-│   ├── split_info.yaml # Información de división
-│   └── train.py        # Script de entrenamiento
+│   ├── data.yaml       # YOLO configuration
+│   ├── split_info.yaml # Split information
+│   └── train.py        # Training script
 ```
 
-## 🎯 Formatos Soportados
+## 🎯 Supported Formats
 
-### Entrada (Detección Automática)
+### Input (Automatic Detection)
 
 - **YOLO**: `.txt` + `data.yaml`
-- **COCO**: `.json` con estructura estándar
-- **Pascal VOC**: `.xml` con anotaciones
+- **COCO**: `.json` with standard structure
+- **Pascal VOC**: `.xml` with annotations
 
-### Salida (Conversión)
+### Output (Conversion)
 
-- **YOLO**: Estructura estándar con `data.yaml`
-- **COCO**: JSON con imágenes y anotaciones
-- **Pascal VOC**: XML individual por imagen
+- **YOLO**: Standard structure with `data.yaml`
+- **COCO**: JSON with images and annotations
+- **Pascal VOC**: Individual XML per image
 
-## 🚀 Scripts de Entrenamiento
+## 🚀 Training Scripts
 
-EEROL genera automáticamente scripts de entrenamiento optimizados:
+EEROL automatically generates optimized training scripts:
 
-- **YOLOv8**: Usando ultralytics
-- **COCO**: Base para Detectron2/MMDetection
-- **PyTorch**: Plantilla personalizable
-- **TensorFlow**: Base para TF Object Detection API
-- **U-Net**: Para segmentación semántica
+- **YOLOv8**: Using ultralytics
+- **COCO**: Base for Detectron2/MMDetection
+- **PyTorch**: Customizable template
+- **TensorFlow**: Base for TF Object Detection API
+- **U-Net**: For semantic segmentation
 
-## 🔧 Configuración
+## 🔧 Configuration
 
-EEROL crea automáticamente:
+EEROL automatically creates:
 
-- `~/.eerol/config.yaml`: Configuración global
-- `Train/`: Directorio de datasets generados
-- `Results/`: Directorio de resultados
-- `Backups/`: Directorio de respaldos
+- `~/.eerol/config.yaml`: Global configuration
+- `Train/`: Generated datasets directory
+- `Results/`: Results directory
+- `Backups/`: Backup directory
 
-## 📊 Ejemplo de Uso Completo
+## 📊 Complete Usage Example
 
-1. **Escanear** datasets existentes:
+1. **Scan** existing datasets:
 
    ```bash
    python eerol.py scan --path ~/datasets
    ```
 
-2. **Convertir** a YOLO:
+2. **Convert** to YOLO:
 
    ```bash
-   python eerol.py convert --input-path ~/datasets/mi_coco_dataset --format yolo --name converted_yolo
+   python eerol.py convert --input-path ~/datasets/my_coco_dataset --format yolo --name converted_yolo
    ```
 
-3. **Dividir** con proporciones personalizadas:
+3. **Split** with custom proportions:
 
    ```bash
    python eerol.py split --input-path Train/converted_yolo --train-ratio 0.8 --val-ratio 0.2 --name final_dataset
    ```
 
-4. **Entrenar** el modelo:
+4. **Train** the model:
    ```bash
    python eerol.py train --dataset final_dataset
    ```
 
-## 🛠️ Personalización
+## 🛠️ Customization
 
-### Agregar Nuevos Formatos
+### Add New Formats
 
-Edita `eerol/dataset_converter.py` para agregar nuevos formatos de conversión.
+Edit `eerol/dataset_converter.py` to add new conversion formats.
 
-### Personalizar Scripts de Entrenamiento
+### Customize Training Scripts
 
-Modifica `eerol/script_generator.py` para agregar nuevos frameworks o personalizar parámetros.
+Modify `eerol/script_generator.py` to add new frameworks or customize parameters.
 
-### Agregar Nuevas Validaciones
+### Add New Validations
 
-Extiende `eerol/utils.py` para agregar validaciones específicas de formato.
+Extend `eerol/utils.py` to add specific format validations.
 
-## 🧹 Limpieza
+## 🧹 Cleanup
 
-EEROL puede limpiar automáticamente:
+EEROL can automatically clean:
 
-- Archivos `__pycache__`
-- Archivos temporales
-- Archivos obsoletos del proyecto anterior
-- Caches de frameworks
+- `__pycache__` files
+- Temporary files
+- Obsolete project files
+- Framework caches
 
-## ⚠️ Notas Importantes
+## ⚠️ Important Notes
 
-- **Respaldo**: EEROL siempre preserva los datasets originales
-- **Dependencias**: Los frameworks de ML se instalan bajo demanda
-- **Memoria**: Para datasets grandes, considera usar SSD
-- **GPU**: Los scripts detectan automáticamente disponibilidad de GPU
+- **Backup**: EEROL always preserves original datasets
+- **Dependencies**: ML frameworks are installed on demand
+- **Memory**: For large datasets, consider using SSD
+- **GPU**: Scripts automatically detect GPU availability
 
-## 🤝 Contribuciones
+## 🤝 Contributions
 
-Este es un proyecto refactorizado de una herramienta específica para datasets dentales, ahora convertida en una herramienta universal. Las contribuciones son bienvenidas.
+This is a refactored project from a tool specific to dental datasets, now converted into a universal tool. Contributions are welcome.
 
-## 📄 Licencia
+## 📄 License
 
-Proyecto de código abierto. Ver archivo de licencia para más detalles.
+Open-source project. See the license file for more details.
 
 ---
 
-**¡EEROL hace que la gestión de datasets de visión por computador sea simple y eficiente!** 🚀
+**EEROL makes computer vision dataset management simple and efficient!** 🚀
