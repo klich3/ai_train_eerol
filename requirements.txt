@@ -1,58 +1,23 @@
-# 🦷 Dental AI Workflow Manager v2.0 - Dependencias Completas
-# ================================================================
-# Archivo unificado con todas las dependencias del proyecto
-# Incluye: Workflow Manager + Advanced Analysis + Visualization
+# EEROL - Universal Dataset Management Tool
+# Core requirements
 
-# ===== CORE DEPENDENCIES =====
-numpy>=1.24.0
-pandas>=2.0.0
-opencv-python>=4.8.0
-Pillow>=9.5.0
+# Image processing
+opencv-python>=4.5.0
+Pillow>=8.0.0
+
+# Data handling
 PyYAML>=6.0
-pathlib2>=2.3.7
+numpy>=1.21.0
 
-# ===== DATA SCIENCE & ANALYSIS =====
-matplotlib>=3.6.0
-seaborn>=0.12.0
-plotly>=5.17.0
-scikit-learn>=1.3.0
-scipy>=1.7.0
-scikit-image>=0.18.0
+# Visualization (optional)
+matplotlib>=3.5.0
 
-# ===== VISUALIZATION & REPORTING =====
-wordcloud>=1.9.0
-rich>=10.0.0
+# Machine Learning frameworks (optional - install as needed)
+# torch>=1.10.0
+# torchvision>=0.11.0
+# ultralytics>=8.0.0
+# tensorflow>=2.8.0
 
-# ===== COMPUTER VISION & DEEP LEARNING =====
-albumentations>=1.3.0
-torch>=2.0.0
-torchvision>=0.15.0
-ultralytics>=8.0.0
-tensorflow>=2.10.0
-
-# ===== DETECTRON2 (para segmentación) =====
-# Nota: detectron2 requiere instalación especial desde Git
-# pip install 'git+https://github.com/facebookresearch/detectron2.git'
-# O usar: pip install detectron2 -f https://dl.fbaipublicfiles.com/detectron2/wheels/index.html
-
-# ===== DATA FORMATS & CONVERSION =====
-pycocotools>=2.0.6
-xmltodict>=0.12.0
-
-# ===== WEB & API =====
-fastapi>=0.100.0
-uvicorn[standard]>=0.22.0
-python-multipart>=0.0.6
-requests>=2.26.0
-beautifulsoup4>=4.10.0
-
-# ===== UTILITIES & PROGRESS =====
-tqdm>=4.64.0
-python-dotenv>=1.0.0
-
-# ===== OPCIONAL (descomenta según necesites) =====
-# jupyter>=1.0.0              # Para notebooks de análisis
-# streamlit>=1.20.0            # Para dashboard web interactivo
-# wandb>=0.15.0                # Para tracking de experimentos
-# mlflow>=2.0.0                # Para MLOps
-# tensorboard>=2.10.0          # Para visualización de entrenamientos
+# Utilities
+tqdm>=4.60.0
+pathlib2>=2.3.0  # For older Python versions

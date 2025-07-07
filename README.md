@@ -1,246 +1,204 @@
-# 🦷 Dental AI Workflow Manager v2.0
+# 🔧 EEROL - Universal Dataset Management Tool
 
-Sistema modular para análisis, procesamiento y preparación de datasets dentales para entrenamiento de modelos de IA.
+**EEROL** es una herramienta universal para la gestión de datasets de visión por computador. Permite escanear, analizar, convertir, dividir y entrenar modelos con datasets en diferentes formatos.
 
-## 🚀 Inicio Rápido
+## ✨ Características
 
-### Análisis Rápido de Datasets
+- 🔍 **Escaneo automático** de datasets en cualquier directorio
+- 📊 **Análisis detallado** de estructura, formatos y categorías
+- 🔄 **Conversión** entre formatos (YOLO ↔ COCO ↔ Pascal VOC)
+- ✂️ **División personalizada** con proporciones configurables (train/val/test)
+- 🚀 **Generación automática** de scripts de entrenamiento
+- 👁️ **Previsualización** de anotaciones sobre imágenes
+- 🧹 **Limpieza automática** de archivos innecesarios
+- 🎯 **Soporte múltiple** para YOLO, COCO, PyTorch, TensorFlow, U-Net
+
+## 🚀 Instalación
+
+1. **Clonar o descargar** este repositorio
+2. **Instalar dependencias**:
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. **Hacer ejecutable** (en Linux/macOS):
+   ```bash
+   chmod +x eerol.py
+   ```
+
+## 📋 Uso
+
+### Modo Interactivo
+
 ```bash
-# Análisis completo con visualizaciones
-python demo_herramientas.py --analisis
-
-# Ver resumen de resultados
-python demo_herramientas.py --resumen
+python eerol.py
 ```
 
-### Sistema Modular v2.0
+### Línea de Comandos
+
+#### Escanear datasets
+
 ```bash
-# Workflow completo modular
-python ejemplo_uso_v2.py
-
-# Análisis rápido
-python ejemplo_uso_v2.py --quick
+python eerol.py scan --path /ruta/a/datasets
+python eerol.py scan  # Usa directorio actual o HOME
 ```
 
-### Sistema Legacy (compatible)
+#### Convertir formato
+
 ```bash
-# Menú interactivo legacy
-python DataWorkflowManager.py
-
-# Ejemplos legacy
-python ejemplo_uso.py completo
-python ejemplo_uso.py v2  # Ver nuevas herramientas
+python eerol.py convert --input-path /ruta/dataset --format yolo --name mi_dataset
+python eerol.py convert --input-path /ruta/dataset --format coco
 ```
 
-## 📁 Estructura del Proyecto
+#### Previsualizar anotaciones
 
-```
-Dental-AI-Workflow/
-├── 📊 StatisticsResults/     # Resultados de análisis y estadísticas
-│   ├── *.png                # Gráficos y visualizaciones
-│   ├── *.csv                # Tablas de datos
-│   ├── *.json               # Datos de análisis
-│   └── *.html               # Dashboards interactivos
-│
-├── 🏗️ Src/                   # Módulos principales (v2.0)
-│   ├── workflow_manager.py  # Gestor principal del workflow
-│   ├── data_analyzer.py     # Analizador de datos
-│   ├── data_processor.py    # Procesador de datasets
-│   ├── structure_generator.py # Generador de estructuras
-│   └── script_templates.py  # Plantillas de scripts
-│
-├── 🔧 Utils/                 # Herramientas y utilidades
-│   ├── advanced_analysis.py # 🔥 Análisis avanzado integrado
-│   ├── visualization.py     # Visualización de datos
-│   ├── data_augmentation.py # Augmentación de datos
-│   └── dental_format_converter.py # Convertidor de formatos
-│
-├── 📚 Wiki/                  # Documentación centralizada
-│   ├── README.md            # Índice de documentación
-│   ├── USAGE_EXAMPLES.md    # Ejemplos de uso
-│   ├── API_REFERENCE.md     # Referencia de la API
-│   ├── WORKFLOW_GUIDE.md    # Guía del workflow
-│   └── MIGRACION_V2.md      # Guía de migración
-│
-├── 🎯 Dist/dental_ai/        # Estructura de salida final
-│   ├── datasets/            # Datasets procesados
-│   ├── models/              # Modelos entrenados
-│   ├── scripts/             # Scripts de entrenamiento
-│   └── docs/                # Documentación generada
-│
-├── main.py                  # Punto de entrada principal
-├── ejemplo_uso_v2.py        # 🔥 Ejemplo modular v2.0
-├── demo_herramientas.py     # 🔥 Demo de herramientas integradas
-├── requirements.txt         # Dependencias del proyecto
-└── ejemplo_uso.py           # Ejemplo legacy (compatible)
-```
-
-## 🔥 Nuevas Características v2.0
-
-### ✅ Herramientas Integradas
-- **Archivos legacy** → Integrados en `Utils/advanced_analysis.py`
-- Resultados centralizados en `StatisticsResults/`
-- Documentación centralizada en `Wiki/`
-
-### ✅ Análisis Avanzado
-- Análisis de calidad de imágenes
-- Detección automática de formatos
-- Visualizaciones interactivas
-- Dashboards HTML
-- Reportes en múltiples formatos
-
-### ✅ Sistema Modular
-- Código separado en módulos
-- Estructura clara y mantenible
-- API bien documentada
-- Herramientas reutilizables
-
-## 📊 Análisis y Estadísticas
-
-### Ejecutar Análisis Completo
-```python
-from Utils.advanced_analysis import analyze_dental_datasets
-
-# Análisis completo con visualizaciones
-results = analyze_dental_datasets("_dataSets", "StatisticsResults")
-```
-
-### Archivos Generados
-```
-StatisticsResults/
-├── dental_dataset_analysis.json    # Datos completos
-├── dataset_overview.png            # Resumen visual
-├── format_distribution.png         # Distribución por formato
-├── categories_analysis.png         # Análisis de categorías
-├── quality_analysis.png            # Análisis de calidad
-├── size_distribution.png           # Distribución de tamaños
-├── datasets_summary_table.csv      # Tabla resumen
-├── dataset_report.md               # Reporte en texto
-└── dental_datasets_dashboard.html  # 🌐 Dashboard interactivo
-```
-
-## 🎯 Casos de Uso
-
-### 🔬 Investigación Académica
 ```bash
-# Análisis comparativo de datasets
-python demo_herramientas.py --analisis
-
-# Generar reportes para publicaciones
-python demo_herramientas.py --visuales
+python eerol.py preview --image imagen.jpg --annotation annotation.txt --format yolo
+python eerol.py preview --image imagen.jpg --annotation annotation.xml --format pascal_voc
 ```
 
-### 🏭 Desarrollo Comercial
+#### Dividir dataset
+
 ```bash
-# Preparar datasets para entrenamiento
-python ejemplo_uso_v2.py
-
-# Validar calidad de datos
-python demo_herramientas.py --resumen
+python eerol.py split --input-path /ruta/dataset --train-ratio 0.7 --val-ratio 0.3
+python eerol.py split --input-path /ruta/dataset --train-ratio 0.6 --val-ratio 0.2 --test-ratio 0.2
 ```
 
-### 🎓 Educación
+#### Listar datasets de entrenamiento
+
 ```bash
-# Explorar datasets dentales
-python ejemplo_uso.py v2
-
-# Aprender sobre análisis de datos
-python demo_herramientas.py --analisis
+python eerol.py list
 ```
 
-## 🛠️ Instalación y Configuración
+#### Entrenar modelo
 
-### Dependencias
 ```bash
-# Instalar dependencias completas
-pip install -r requirements.txt
-
-# O dependencias básicas
-pip install -r requirements.txt
+python eerol.py train --dataset mi_dataset
+python eerol.py train  # Selección interactiva
 ```
 
-### Configuración Inicial
+#### Limpiar archivos
+
 ```bash
-# Verificar estructura
-python ejemplo_uso.py verificar
-
-# Ver herramientas disponibles
-python ejemplo_uso.py v2
-
-# Ejecutar demo
-python demo_herramientas.py
+python eerol.py clean
 ```
 
-## 📚 Documentación
+## 📁 Estructura de Salida
 
-### Guides y Tutoriales
-- [`Wiki/README.md`](Wiki/README.md) - Índice completo de documentación
-- [`Wiki/USAGE_EXAMPLES.md`](Wiki/USAGE_EXAMPLES.md) - Ejemplos detallados
-- [`Wiki/WORKFLOW_GUIDE.md`](Wiki/WORKFLOW_GUIDE.md) - Guía del workflow
+EEROL genera los datasets en la carpeta `Train/` con la siguiente estructura:
 
-### Referencias Técnicas
-- [`Wiki/API_REFERENCE.md`](Wiki/API_REFERENCE.md) - Referencia completa de la API
-- [`Wiki/MIGRACION_V2.md`](Wiki/MIGRACION_V2.md) - Guía de migración
-
-## 🔄 Migración desde v1.0
-
-### Usuarios Existentes
-1. Las herramientas legacy siguen funcionando
-2. Los nuevos módulos ofrecen más funcionalidades
-3. Resultados ahora centralizados en `StatisticsResults/`
-4. Documentación actualizada en `Wiki/`
-
-### Comandos de Migración
-```bash
-# Ver estado actual
-python ejemplo_uso.py verificar
-
-# Conocer nuevas herramientas
-python ejemplo_uso.py v2
-
-# Probar sistema v2.0
-python ejemplo_uso_v2.py --quick
+```
+Train/
+├── mi_dataset_yolo/
+│   ├── train/
+│   │   ├── images/
+│   │   └── labels/
+│   ├── val/
+│   │   ├── images/
+│   │   └── labels/
+│   ├── test/           # Opcional
+│   │   ├── images/
+│   │   └── labels/
+│   ├── data.yaml       # Configuración YOLO
+│   ├── split_info.yaml # Información de división
+│   └── train.py        # Script de entrenamiento
 ```
 
-## 🤝 Contribución
+## 🎯 Formatos Soportados
 
-### Reportar Problemas
-- Crear issue con logs detallados
-- Incluir configuración del sistema
-- Describir pasos para reproducir
+### Entrada (Detección Automática)
 
-### Desarrollo
-- Fork del repositorio
-- Crear rama para features
-- Seguir convenciones de código
-- Enviar pull request
+- **YOLO**: `.txt` + `data.yaml`
+- **COCO**: `.json` con estructura estándar
+- **Pascal VOC**: `.xml` con anotaciones
 
-## 📞 Soporte
+### Salida (Conversión)
 
-- **Documentación**: [`Wiki/`](Wiki/)
-- **Ejemplos**: [`Wiki/USAGE_EXAMPLES.md`](Wiki/USAGE_EXAMPLES.md)
-- **API**: [`Wiki/API_REFERENCE.md`](Wiki/API_REFERENCE.md)
-- **Demo**: `python demo_herramientas.py`
+- **YOLO**: Estructura estándar con `data.yaml`
+- **COCO**: JSON con imágenes y anotaciones
+- **Pascal VOC**: XML individual por imagen
 
-## 📈 Estado del Proyecto
+## 🚀 Scripts de Entrenamiento
 
-### ✅ Completado
-- [x] Sistema modular v2.0
-- [x] Integración de herramientas de análisis
-- [x] Centralización de resultados
-- [x] Documentación completa
-- [x] Ejemplos de uso
-- [x] Compatibilidad con v1.0
+EEROL genera automáticamente scripts de entrenamiento optimizados:
 
-### 🔄 En Desarrollo
-- [ ] Interfaz web interactiva
-- [ ] API REST
-- [ ] Integración con MLflow
-- [ ] Soporte para más formatos
+- **YOLOv8**: Usando ultralytics
+- **COCO**: Base para Detectron2/MMDetection
+- **PyTorch**: Plantilla personalizable
+- **TensorFlow**: Base para TF Object Detection API
+- **U-Net**: Para segmentación semántica
+
+## 🔧 Configuración
+
+EEROL crea automáticamente:
+
+- `~/.eerol/config.yaml`: Configuración global
+- `Train/`: Directorio de datasets generados
+- `Results/`: Directorio de resultados
+- `Backups/`: Directorio de respaldos
+
+## 📊 Ejemplo de Uso Completo
+
+1. **Escanear** datasets existentes:
+
+   ```bash
+   python eerol.py scan --path ~/datasets
+   ```
+
+2. **Convertir** a YOLO:
+
+   ```bash
+   python eerol.py convert --input-path ~/datasets/mi_coco_dataset --format yolo --name converted_yolo
+   ```
+
+3. **Dividir** con proporciones personalizadas:
+
+   ```bash
+   python eerol.py split --input-path Train/converted_yolo --train-ratio 0.8 --val-ratio 0.2 --name final_dataset
+   ```
+
+4. **Entrenar** el modelo:
+   ```bash
+   python eerol.py train --dataset final_dataset
+   ```
+
+## 🛠️ Personalización
+
+### Agregar Nuevos Formatos
+
+Edita `eerol/dataset_converter.py` para agregar nuevos formatos de conversión.
+
+### Personalizar Scripts de Entrenamiento
+
+Modifica `eerol/script_generator.py` para agregar nuevos frameworks o personalizar parámetros.
+
+### Agregar Nuevas Validaciones
+
+Extiende `eerol/utils.py` para agregar validaciones específicas de formato.
+
+## 🧹 Limpieza
+
+EEROL puede limpiar automáticamente:
+
+- Archivos `__pycache__`
+- Archivos temporales
+- Archivos obsoletos del proyecto anterior
+- Caches de frameworks
+
+## ⚠️ Notas Importantes
+
+- **Respaldo**: EEROL siempre preserva los datasets originales
+- **Dependencias**: Los frameworks de ML se instalan bajo demanda
+- **Memoria**: Para datasets grandes, considera usar SSD
+- **GPU**: Los scripts detectan automáticamente disponibilidad de GPU
+
+## 🤝 Contribuciones
+
+Este es un proyecto refactorizado de una herramienta específica para datasets dentales, ahora convertida en una herramienta universal. Las contribuciones son bienvenidas.
+
+## 📄 Licencia
+
+Proyecto de código abierto. Ver archivo de licencia para más detalles.
 
 ---
 
-**Versión**: 2.0 (Modular)  
-**Autor**: Anton Sychev  
-**Licencia**: MIT  
-**Última actualización**: 15 de enero de 2025
+**¡EEROL hace que la gestión de datasets de visión por computador sea simple y eficiente!** 🚀
